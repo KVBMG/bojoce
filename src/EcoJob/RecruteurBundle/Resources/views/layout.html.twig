@@ -1,0 +1,34 @@
+{% extends '::base.html.twig' %}
+{% block title %}{% endblock %}
+
+{% block content %} 
+    {{parent()}} 
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="latest_news row">
+                        <ul>
+                            <li><a href="{{path('eco_job_recruteur_offre_create')}}">Ajouter une offre d'emploi</a></li>
+                            <li><a href="{{path('eco_job_recruteur_offre_list')}}"> Mes offres d'emploi </a></li>
+                            <li><a href="{{ path('eco_job_recruteur_candidatures_list') }}">Candidatures</a></li>
+                        </ul>
+                    </div>
+                    {% block offres %} {% endblock %}
+                </div>                
+                <div class="col-sm-8">
+                    {% if app.request.hasPreviousSession %}
+                       {% for flashMessage in app.session.flashBag.get('success') %}
+                            <div class="alert alert-succes alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <strong>{{ flashMessage }}</strong>
+                            </div>
+                       {% endfor %}
+                    {% endif %}
+                    {% block scontent %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}                

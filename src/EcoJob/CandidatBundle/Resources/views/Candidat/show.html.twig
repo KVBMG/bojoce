@@ -1,0 +1,33 @@
+{% extends "EcoJobCandidatBundle::layout.html.twig"%}
+
+{% block title %} Mon CV {% endblock %}
+
+{% block content_title %} Candidat {% endblock %}
+
+{% block content_stitle %} Mon CV {% endblock %}
+
+{% block scontent %}   
+    <div class="title6">Mon CV </div>
+
+    <div class="team1 clearfix">
+        {% if not app.user.cvFile %}
+        <figure><img src="{{ vich_uploader_asset(cv, 'imageFile') }}" alt="{{ cv.nom }}" class="img-responsive" height="200px" width="200px" /></figure>
+        <div class="caption">
+            <div class="txt1">{{cv.nom}} {{cv.prenom}}</div>
+            <div class="txt2">{{cv.telephone}}</div>
+            <div class="txt3">{{cv.about}}</div>
+            <a href="{{ path('eco_job_candidat_cv_edit')}}" class="btn-default btn3">Modifier</a>
+            <a href="{{ path('eco_job_candidat_cv_delete')}}" class="btn-default btn3">Supprimer</a>
+            {% if app.user.cvName is defined %}
+                <a href='{{ vich_uploader_asset(cv, 'imageFile') }}'>Votre CV numérique</a>
+            {% endif %}
+        </div>
+        {% else %}
+            <a href="{{ vich_uploader_asset(app.user.cvFile, 'cvFile') }}">Aperçu du CV envoyé</a>
+            <div class="txt3">{{app.user.cvFile.lm}}</div>
+        {% endif %}
+    </div>
+</div>
+{{parent()}} 
+
+{% endblock %}  

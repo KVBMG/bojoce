@@ -1,0 +1,20 @@
+<div class="latest_news">
+    <div class="title7">Offre numero {{offre.id}}</div>
+    <div class="news1">
+        <div class="txt2"><a href="#">{{offre.titre}}</a></div>
+        <div class="txt3">{{offre.contenu}}</div>  
+        <div class="txt3">{{offre.localisation}}</div>  
+        {% if not app.user %}
+            <a href="{{ path('fos_user_registration_register')}}" class="btn-default btn1">Save</a>
+            <a href="{{ path('eco_job_anonymous_offre_integralite',{ 'id': offre.id }) }}" class="btn-default btn1">Voir</a>
+        {% else %}
+            {% if offre.added %}
+                <a href="#" class="btn-default btn-warning">Déja sauvegardée</a>
+            {% else %}
+                    <a href="{{ path('eco_job_candidat_offre_save',{'id': offre.id})}}" class="btn-default btn1">Save</a>
+            {% endif %}
+                    <a href="{{ path('eco_job_anonymous_offre_integralite',{ 'id': offre.id }) }}" class="btn-default btn1">Voir</a>
+        {% endif %}
+    </div>
+
+</div>

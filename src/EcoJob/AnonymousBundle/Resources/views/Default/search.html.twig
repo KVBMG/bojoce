@@ -1,0 +1,115 @@
+{% extends '::base.html.twig' %}
+
+{% block title %} Offres d'emploi {% endblock %}
+
+{% block content_title %} Recherche {% endblock %}
+
+{% block content_stitle %} Offres d'emploi {% endblock %}
+
+{% block content %}   
+    <div id="content" class="container">
+        <div >
+            <a href="{{path('eco_job_anonymous_map')}}">Avec carte de France</a>
+
+            <div class="title6 text-uppercase">Map</div>           
+            <div class="row">
+                <div class="col-sm-3">
+                    <form id="searchForm">           
+                        <input type="text" id="searchBar" name="keywords" placehodler="Mots clés">
+                        <label for="exp">Expérience:</label>
+                        <select name="experience" id="exp">
+                             <option value="0">Tous</option>
+                            <option value="1">1 an</option>
+                            <option value="2">2 ans</option>
+                            <option value="3">3 ans</option>
+                            <option value="4">4 ans</option>
+                            <option value="5">5 ans</option>
+                            <option value="6">6 ans</option>
+                            <option value="7">7 ans</option>
+                            <option value="8">8 ans</option>
+                            <option value="9">9 ans</option>
+                            <option value="10">10 ans</option>
+                        </select>           
+                        <label for="radiobtn">Type de contrat:</label>
+                        <div class="radio radio-danger">
+                            <input type="radio" name="contrat" id="contrat3" value=0 checked>
+                            <label for="contrat3">Tous</label>
+                        </div>                
+                        <div class="radio radio-danger">
+                            <input type="radio" name="contrat" id="contrat2" value=1 >
+                            <label for="contrat2">CDD</label>
+                        </div>
+                        <div class="radio radio-danger">
+                            <input type="radio" name="contrat" id="contrat1" value=2>
+                            <label for="contrat1">CDI</label>
+                        </div>
+                        <label for="limit">Nombre d'offre à afficher :</label>
+                        <select name="limit" id="limit">
+                            <option value="10">10</option>
+                            <option value="15">15</option>                            
+                            <option value="20">20</option>
+                        </select>                        
+                        <input type="hidden" id="offset" name="offset" value="0" />                                                
+                        <button class="btn-default btn1" id="reset">Reset</button>           
+                    </form> 
+                </div> 
+                <div class="col-sm-6 latest_news srollko" id="offreList">
+                    {% if not app.user %}
+                        {% for offre in offres %}
+                            <div class="news1 offre" offreId="{{offre.id}}">
+                                <div class="txt2"><a href="#details">{{offre.titre}}</a></div>
+                                <div class="txt3">{{offre.localisation}}</div>
+                            </div>
+                        {% endfor %} 
+                    {% else %}
+                        {% for offre in offres %}
+                            <div class="news1 offre" offreId="{{offre.id}}">
+                                <div class="txt2"><a href="#details">{{offre.titre}}</a></div>
+                                <div class="txt1">{{offre.createdAt |date('Y-m-d') }} </div>                                
+                                <div class="txt3">{{offre.contenu}}</div>
+                                {% if offre.added %}
+                                    <a href="#" class="btn-default btn-warning">Déja sauvegardée</a>
+                                {% else %}
+                                    <a href="{{ path('eco_job_candidat_offre_save',{'id': offre.id})}}" class="btn-default btn1">Save</a>
+                                {% endif %}
+                            </div>
+                        {% endfor %}                                               
+                    {% endif %}
+                </div>   
+                <div class="col-sm-3" id="details">
+
+                </div>                 
+            </div>
+        </div>
+    </div>    
+    <div class="latest_news">
+        <div class="title7">Recherche</div>
+
+        <br>
+
+    </div>
+
+    <div style="z-index:2016;" class="modal fade " id="globModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" >Alerte</h4>
+                </div>
+                <div class="modal-body">
+                    Vous devez vous avoir un compte sur eco-job avant de pouvoir sauvegarder ou postuler à une offre d'emploi.
+                    Veuillez vous inscrire en cliquant <a href="{{ path('fos_user_registration_register')}}" class="btn-default">ici</a>
+                    ou vous connecter <a href="{{ path('fos_user_security_login')}}" class="btn-default">ici</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}  
+
+{% block javascripts %}
+    {{parent()}}    
+    <script type="text/javascript" src="{{asset('js/jquery.blockUI.js')}}"></script>    
+    <script type="text/javascript" src="{{asset('js/jquery.debounce.js')}}"></script>        
+    <script type="text/javascript" src="{{asset('js/search_free.js')}}"></script>
+
+{% endblock %}

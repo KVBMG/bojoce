@@ -1,0 +1,32 @@
+{% extends '::base.html.twig' %}
+{% block title %}{% endblock %}
+
+{% block content %} 
+    {{parent()}} 
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="latest_news">
+                        <div class="title7">Candidat side bar</div>
+                        <ul>
+                            <li><a href="{{path('eco_job_candidat_cv_fill')}}"> Remplir mon CV</a></li>
+                            <li><a href="{{path('eco_job_candidat_cv_show')}}"> Voir mon CV</a></li>
+                            <li><a href="{{path('eco_job_candidat_myoffres')}}"> Offres d'emploi sauvegardées</a></li>
+                            <li><a href="{{path('eco_job_candidat_postuled_offres')}}"> Offres d'emploi postulés</a></li>
+                            <li><a href="{{path('eco_job_candidat_param')}}"> Paramètre</a></li>
+                            </li>
+                        </ul>
+                    </div>
+                </div>                
+                <div class="col-sm-8">
+                    {% block scontent %}
+                        <div class="title6">Contenu pour un candidat</div>
+
+                    {% endblock %}    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}                

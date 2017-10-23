@@ -1,0 +1,30 @@
+<div class="col-sm-8">
+    <div class="title6">Résultats </div>   
+    {% if offres is not empty %}
+        Total {{ offres|length }}       
+        {% if not app.user %}
+            {% for offre in offres %}
+                <div class="news1 offre" offreId="{{offre.id}}">
+                    <div class="txt2"><a href="#details">{{offre.titre}}</a></div>
+                    <div class="txt3">{{offre.localisation}}</div>
+                </div>
+            {% endfor %} 
+        {% else %}
+            {% for offre in offres %}
+                <div class="news1 offre" offreId="{{offre.id}}">
+                    <div class="txt1">12/4/2016</div>
+                    <div class="txt2"><a href="{{path('eco_job_candidat_offre_details_2',{'id': offre.id})}}">{{offre.titre}}</a></div>
+                    <div class="txt3">{{offre.contenu}}</div>
+                    {% if offre.added %}
+                        <a href="#" class="btn-default btn-warning">Déja sauvegardée</a>
+                    {% else %}
+                        <a href="{{ path('eco_job_candidat_offre_save',{'id': offre.id})}}" class="btn-default btn1">Save</a>
+                    {% endif %}
+                </div>
+            {% endfor %}                                               
+        {% endif %}   
+    {% else %}
+        aucun résultat 
+    {%endif %}
+
+</div>
