@@ -1,2 +1,0 @@
-0
-a:2:{i:0;O:30:"Doctrine\ORM\Mapping\ManyToOne":4:{s:12:"targetEntity";s:46:"EcoJob\RecruteurBundle\Entity\ContratCategorie";s:7:"cascade";N;s:5:"fetch";s:4:"LAZY";s:10:"inversedBy";N;}i:1;O:33:"JMS\Serializer\Annotation\Exclude":1:{s:2:"if";N;}}
