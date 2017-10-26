@@ -91,7 +91,7 @@
                     success : function(data){
                         $('#responseStore').addClass('alert-success').html(data.message).show();
                         $('.clickedPostul').replaceWith("<a href=\"#\" class=\"btn-default btn-warning\">Déja postulé</a>");
-                        $(".clickedPostul").removeClass("clickedPostul")
+                        $(".clickedPostul").removeClass("clickedPostul");
                         $('#m-m-u').modal('hide');
                     },
                     complete: function () {

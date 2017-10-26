@@ -801,6 +801,12 @@ class Form implements \IteratorAggregate, FormInterface
     /**
      * {@inheritdoc}
      */
+    public function removeError($index){
+        $erro = $this->errors;
+        array_splice($erro, $index);
+        $this->errors = $erro;
+        return $this;
+    }
     public function getErrors($deep = false, $flatten = true)
     {
         $errors = $this->errors;

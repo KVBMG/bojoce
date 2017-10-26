@@ -536,7 +536,7 @@ class Offre
         $now = date_format(new \DateTime(), 'Y-m-d');
         
         if($this->getValidAt() != null && $this->getExpireAt() != null){
-            $date_limit = date_format(date_add($this->getValidAt(), new \DateInterval('P'.$this->getExpireAt().'M')), 'Y-m-d');
+            $date_limit = date_format(date_add($this->getValidAt(), new \DateInterval('P'.$this->getExpireAt().'D')), 'Y-m-d');
             $this->expired = (strtotime($date_limit) - strtotime($now) < 0 );
         }else{
             $this->expired = false;

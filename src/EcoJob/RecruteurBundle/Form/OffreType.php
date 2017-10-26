@@ -35,10 +35,11 @@ class OffreType extends AbstractType {
                 )
                   ->add('expireAt', ChoiceType::class, array(  
                         'choices'  => array(
-                            1 => '1 mois',
-                            3 => '3 mois',
-                            6 => '6 mois',
-                            12 => '1 an',
+                            2 => '2 jours',
+                            30 => '1 mois',
+                            90 => '3 mois',
+                            180 => '6 mois',
+                            360 => '1 an',
                             
                         ),
                        'label' => 'Validité'

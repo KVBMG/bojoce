@@ -89,7 +89,7 @@ class OffreRepository extends \Doctrine\ORM\EntityRepository {
 
     public function getExpiredNow() {
         $qb = $qb = $this->createQueryBuilder('o')
-                ->where("DATE_FORMAT(DATE_ADD(o.validAt,o.expireAt,'MONTH'),'%Y-%m-%d') <= DATE_FORMAT(CURRENT_DATE(),'%Y-%m-%d')")
+                ->where("DATE_FORMAT(DATE_ADD(o.validAt,o.expireAt,'DAY'),'%Y-%m-%d') <= DATE_FORMAT(CURRENT_DATE(),'%Y-%m-%d')")
                 ->andWhere("o.suspendu = false");
         return $qb->getQuery()->getResult();
     }

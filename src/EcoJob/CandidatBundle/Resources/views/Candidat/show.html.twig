@@ -10,7 +10,7 @@
     <div class="title6">Mon CV </div>
 
     <div class="team1 clearfix">
-        {% if not app.user.cvFile %}
+        
         <figure><img src="{{ vich_uploader_asset(cv, 'imageFile') }}" alt="{{ cv.nom }}" class="img-responsive" height="200px" width="200px" /></figure>
         <div class="caption">
             <div class="txt1">{{cv.nom}} {{cv.prenom}}</div>
@@ -22,7 +22,7 @@
                 <a href='{{ vich_uploader_asset(cv, 'imageFile') }}'>Votre CV numérique</a>
             {% endif %}
         </div>
-        {% else %}
+            {% if app.user.cvFile is defined %}
             <a href="{{ vich_uploader_asset(app.user.cvFile, 'cvFile') }}">Aperçu du CV envoyé</a>
             <div class="txt3">{{app.user.cvFile.lm}}</div>
         {% endif %}

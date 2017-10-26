@@ -30,20 +30,19 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
  *
  * @author Christophe Coevoet <stof@notk.org>
  */
-class ProfileController extends Controller
-{
+class ProfileController extends Controller {
+
     /**
      * Show the user.
      */
-    public function showAction()
-    {
+    public function showAction() {
         $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
         }
 
         return $this->render('@FOSUser/Profile/show.html.twig', array(
-            'user' => $user,
+                    'user' => $user,
         ));
     }
 
@@ -54,8 +53,7 @@ class ProfileController extends Controller
      *
      * @return Response
      */
-    public function editAction(Request $request)
-    {
+    public function editAction(Request $request) {
         $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
             throw new AccessDeniedException('This user does not have access to this section.');
@@ -79,27 +77,58 @@ class ProfileController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            /** @var $userManager UserManagerInterface */
-            $userManager = $this->get('fos_user.user_manager');
+        if ($form->isSubmitted()) {
+            if ($form->isValid()) {
+                //tsy ho valide mihitsy
+            } else {
+                $errors = array();
+                foreach ($form->getErrors() as $error)
+                    $errors[] = $error->getMessage();
 
-            $event = new FormEvent($form, $request);
-            $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
+                foreach ($form->all() as $key => $child) {
+                    if ($err = $this->getErrorsAsArray($child))
+                        $errors[$key] = $err;
+                }
+                if (count($errors) != 1) {
+                    $form->removeError(0);
+                    return $this->render('@FOSUser/Profile/edit.html.twig', array(
+                                'form' => $form->createView(),
+                    ));
+                } else {
+                    /** @var $userManager UserManagerInterface */
+                    $userManager = $this->get('fos_user.user_manager');
 
-            $userManager->updateUser($user);
+                    $event = new FormEvent($form, $request);
+                    $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
 
-            if (null === $response = $event->getResponse()) {
-                $url = $this->generateUrl('fos_user_profile_show');
-                $response = new RedirectResponse($url);
+                    $userManager->updateUser($user);
+
+                    if (null === $response = $event->getResponse()) {
+                        $url = $this->generateUrl('fos_user_profile_show');
+                        $response = new RedirectResponse($url);
+                    }
+
+                    $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
+
+                    return $response;
+                }
             }
-
-            $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
-
-            return $response;
         }
-
         return $this->render('@FOSUser/Profile/edit.html.twig', array(
-            'form' => $form->createView(),
+                    'form' => $form->createView(),
         ));
     }
+
+    protected function getErrorsAsArray($form) {
+        $errors = array();
+        foreach ($form->getErrors() as $error)
+            $errors[] = $error->getMessage();
+
+        foreach ($form->all() as $key => $child) {
+            if ($err = $this->getErrorsAsArray($child))
+                $errors[$key] = $err;
+        }
+        return $errors;
+    }
+
 }

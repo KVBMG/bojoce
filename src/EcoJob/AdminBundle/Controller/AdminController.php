@@ -15,19 +15,24 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class AdminController extends Controller {
 
     public function indexAction() {
+        $this->getNumbers();
         return $this->render('EcoJobAdminBundle:Admin:index.html.twig');
     }
- public function expriredOffreAction(){
+
+    public function expriredOffreAction() {
+        $this->getNumbers();
         $em = $this->getDoctrine()->getManager();
-        $offres = $em->getRepository('EcoJobRecruteurBundle:Offre')->getExpiredNow();     
-        return $this->render('EcoJobAdminBundle:Admin:expired.html.twig',array(
-            'offres' => $offres
+        $offres = $em->getRepository('EcoJobRecruteurBundle:Offre')->getExpiredNow();
+        return $this->render('EcoJobAdminBundle:Admin:expired.html.twig', array(
+                    'offres' => $offres
         ));
     }
-    public function offreCategorieAction(Request $request){
+
+    public function offreCategorieAction(Request $request) {
+        $this->getNumbers();
         $em = $this->getDoctrine()->getManager();
-        $categories = $em->getRepository('EcoJobRecruteurBundle:ContratCategorie')->findAll(); 
-        
+        $categories = $em->getRepository('EcoJobRecruteurBundle:ContratCategorie')->findAll();
+
         $categorie = new ContratCategorie();
         $formBuilder = $this->createFormBuilder($categorie);
         $formBuilder->add('designation', 'text');
@@ -37,35 +42,41 @@ class AdminController extends Controller {
             if ($form->isValid()) {
                 $em->persist($categorie);
                 $em->flush();
-                    return $this->redirect($this->generateUrl('eco_job_admin_offres_categorie'));
+                return $this->redirect($this->generateUrl('eco_job_admin_offres_categorie'));
             }
         }
-        
-        return $this->render('EcoJobAdminBundle:Admin:offreCategorie.html.twig',array(
-            'categories' => $categories,
-            'form' => $form->createView()
+
+        return $this->render('EcoJobAdminBundle:Admin:offreCategorie.html.twig', array(
+                    'categories' => $categories,
+                    'form' => $form->createView()
         ));
     }
-      public function suspendreOffreAction(Offre $offre){
+
+    public function suspendreOffreAction(Offre $offre) {
+        $this->getNumbers();
         $em = $this->getDoctrine()->getManager();
         $offre->setSuspendu(true);
         $em->flush();
-        return $this->redirectToRoute('eco_job_admin_recruteur_offre',array('id' => $offre->getId()));
+        return $this->redirectToRoute('eco_job_admin_recruteur_offre', array('id' => $offre->getId()));
     }
-    
-    public function suspendreAllOffreAction(){
+
+    public function suspendreAllOffreAction() {
+        $this->getNumbers();
         $suspendre_offre = $this->get('eco_job_admin.suspendre_offre');
         $suspendre_offre->run();
         return $this->redirectToRoute('eco_job_admin_offres_expirer');
     }
-    
-    public function republierAction(Offre $offre){
+
+    public function republierAction(Offre $offre) {
+        $this->getNumbers();
         $em = $this->getDoctrine()->getManager();
         $offre->setSuspendu(false);
         $em->flush();
-        return $this->redirectToRoute('eco_job_admin_recruteur_offre',array('id' => $offre->getId()));
+        return $this->redirectToRoute('eco_job_admin_recruteur_offre', array('id' => $offre->getId()));
     }
+
     public function getUsersAction() {
+        $this->getNumbers();
         $em = $this->getDoctrine()->getManager();
         $candidats = $em->getRepository('EcoJobUserBundle:User')->getNewlyCandidat();
         $recruteurs = $em->getRepository('EcoJobUserBundle:User')->getNewlyRecruteur();
@@ -73,27 +84,32 @@ class AdminController extends Controller {
     }
 
     public function showCVAction(User $user) {
+        $this->getNumbers();
         $cv = $user->getCurriculum();
         return $this->render('EcoJobAdminBundle:Candidat:cv.html.twig', array('cv' => $cv));
     }
 
     public function showOffresAction(User $user) {
+        $this->getNumbers();
         $offres = $user->getOffres();
         return $this->render('EcoJobAdminBundle:Recruteur:offres.html.twig', array('offres' => $offres));
     }
 
     public function showOffreAction(Offre $offre) {
+        $this->getNumbers();
         return $this->render('EcoJobAdminBundle:Recruteur:offre.html.twig', array('offre' => $offre));
     }
 
     public function deleteAction(User $user) {
+        $this->getNumbers();
         $em = $this->getDoctrine()->getManager();
         $em->remove($user);
         $em->flush();
         return $this->redirectToRoute('eco_job_admin_users');
     }
-    
-    public function deleteCategorieAction(ContratCategorie $categorie){
+
+    public function deleteCategorieAction(ContratCategorie $categorie) {
+        $this->getNumbers();
         $em = $this->getDoctrine()->getManager();
         $em->remove($categorie);
         $em->flush();
@@ -101,6 +117,7 @@ class AdminController extends Controller {
     }
 
     public function deleteOffreAction(offre $offre, Request $request) {
+        $this->getNumbers();
         $id = $offre->getRecruteur()->getId();
         $em = $this->getDoctrine()->getEntityManager();
         $em->remove($offre);
@@ -109,21 +126,23 @@ class AdminController extends Controller {
     }
 
     public function valideOffreAction(offre $offre, Request $request) {
+        $this->getNumbers();
         $id = $offre->getRecruteur()->getId();
         $em = $this->getDoctrine()->getEntityManager();
         $offre->setValid(true);
         $offre->setValidAt(new \DateTime());
         $em->persist($offre);
         $em->flush();
-        
-          // Send alert mail
-        
+
+        // Send alert mail
+
         $alert_mail = $this->get('eco_job_candidat.alert_mail');
         $alert_mail->run($offre->getId());
-        return $this->redirect($this->generateUrl('eco_job_admin_offres',array('id'=>$id)));
-
+        return $this->redirect($this->generateUrl('eco_job_admin_offres', array('id' => $id)));
     }
+
     public function valideEditOffreAction(offre $offre, Request $request) {
+        $this->getNumbers();
         $id = $offre->getRecruteur()->getId();
         $em = $this->getDoctrine()->getEntityManager();
         $offre->setValid(true);
@@ -131,22 +150,27 @@ class AdminController extends Controller {
         $offre->setValidAt(new \DateTime());
         $em->persist($offre);
         $em->flush();
-        
+
 
         return $this->redirect($this->generateUrl('eco_job_admin_offres_edited'));
-
     }
+
     public function getOffreNewsAction() {
+        $this->getNumbers();
         $em = $this->getDoctrine()->getEntityManager();
         $offres = $em->getRepository('EcoJobRecruteurBundle:Offre')->findByValid(false);
         return $this->render('EcoJobAdminBundle:Admin:offres.html.twig', array('offres' => $offres));
     }
+
     public function getOffreEditedAction() {
+        $this->getNumbers();
         $em = $this->getDoctrine()->getEntityManager();
         $offres = $em->getRepository('EcoJobRecruteurBundle:Offre')->findByModificationValided(false);
         return $this->render('EcoJobAdminBundle:Admin:offres_edited.html.twig', array('offres' => $offres));
     }
+
     public function getOffreAllAction(Request $request) {
+        $this->getNumbers();
         if ($request->isXmlHttpRequest()) {
             $em = $this->getDoctrine()->getEntityManager();
             $offres = $em->getRepository('EcoJobRecruteurBundle:Offre')->findCustomOffre();
@@ -158,6 +182,7 @@ class AdminController extends Controller {
     }
 
     public function usersAction(Request $request) {
+        $this->getNumbers();
         if ($request->isXmlHttpRequest()) {
             $em = $this->getDoctrine()->getEntityManager();
             $users = $em->getRepository('EcoJobUserBundle:User')->findAll();
@@ -167,7 +192,8 @@ class AdminController extends Controller {
         }
         return $this->render('EcoJobAdminBundle:Admin:users_dash.html.twig');
     }
-    public function supprAction(Request $request,User $user){
+
+    public function supprAction(Request $request, User $user) {
         if ($request->isXmlHttpRequest()) {
             $em = $this->getDoctrine()->getEntityManager();
             $em->remove($user);
@@ -177,9 +203,10 @@ class AdminController extends Controller {
             $response->setData(array(
                 'successMessage' => "Deleted"));
             return $response;
-        }        
+        }
     }
-    public function deleteOffreAjaxAction(Request $request,Offre $offre) {
+
+    public function deleteOffreAjaxAction(Request $request, Offre $offre) {
         if ($request->isXmlHttpRequest()) {
             $em = $this->getDoctrine()->getEntityManager();
             $em->remove($offre);
@@ -192,8 +219,28 @@ class AdminController extends Controller {
         }
     }
 
-   public function showuserAction(Request $request, User $user){
-       return $this->render('EcoJobAdminBundle:Admin:showuser.html.twig',array('user' => $user));
-   } 
+    public function showuserAction(Request $request, User $user) {
+        $this->getNumbers();
+        return $this->render('EcoJobAdminBundle:Admin:showuser.html.twig', array('user' => $user));
+    }
+
+    protected function getNumbers() {
+        $em = $this->getDoctrine()->getEntityManager();
+        $newUsers = count($em->getRepository('EcoJobUserBundle:User')->getNewlyCandidat()) + count($em->getRepository('EcoJobUserBundle:User')->getNewlyRecruteur());
+        $repo = $em->getRepository("EcoJobUserBundle:User");
+        $qb = $repo->createQueryBuilder('u');
+        $qb->select('COUNT(u)');
+        $count_users = $qb->getQuery()->getSingleScalarResult();
+        $repo = $em->getRepository("EcoJobRecruteurBundle:Offre");
+        $qb = $repo->createQueryBuilder('o');
+        $qb->select('COUNT(o)');
+        $count_offres = $qb->getQuery()->getSingleScalarResult();  
+        $expired = count($em->getRepository('EcoJobRecruteurBundle:Offre')->getExpiredNow());
+        $this->get('session')->set('newUsers', $newUsers);  
+        $this->get('session')->set('users', $count_users);        
+        $this->get('session')->set('offres', $count_offres);     
+        $this->get('session')->set('expired', $expired);                        
+        return true;
+    }
 
 }

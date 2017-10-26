@@ -85,7 +85,7 @@ class User extends BaseUser implements ParticipantInterface {
 
     /**
      * @CaptchaAssert\ValidCaptcha(
-     *      message = "CAPTCHA validation failed, try again."
+     *      message = "Validation CAPTCHA échouée, veuillez réessayer."
      * )
      */
     protected $captchaCode;

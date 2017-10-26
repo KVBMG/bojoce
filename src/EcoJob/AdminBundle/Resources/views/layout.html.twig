@@ -9,13 +9,13 @@
                 <div class="col-sm-4">
                     <div class="latest_news">
                         <div class="title7">Administration side bar</div>
-                        <a href="{{path('eco_job_admin_users')}}"> Liste des nouveaux utilisateurs </a>                        
+                        <a href="{{path('eco_job_admin_users')}}"> Liste des nouveaux utilisateurs ({{app.session.get('newUsers')}}) </a>                        
                         <br><a href="{{path('eco_job_admin_offres')}}"> Offres en attentes de validation </a> 
-                         <br><a href="{{path('eco_job_admin_offres_expirer')}}"> Offres exprirés </a>
+                         <br><a href="{{path('eco_job_admin_offres_expirer')}}"> Offres exprirés ({{app.session.get('expired')}})</a>
                          <br><a href="{{path('eco_job_admin_offres_edited')}}"> Offres modifiées et en attente de validation </a>
                         <br><a href="{{path('eco_job_admin_offres_categorie')}}"> Secteur d'activité</a> 
-                        <br><a href="{{path('eco_job_admin_users_dashoard')}}"> Utilisateurs </a>
-                        <br><a href="{{path('eco_job_admin_offres_all')}}"> Toutes les Offres </a>
+                        <br><a href="{{path('eco_job_admin_users_dashoard')}}"> Utilisateurs ({{app.session.get('users')}}) </a>
+                        <br><a href="{{path('eco_job_admin_offres_all')}}"> Toutes les Offres ({{app.session.get('offres')}}) </a>
                     </div>
                 </div>                
                 <div class="col-sm-8">
