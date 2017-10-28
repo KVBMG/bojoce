@@ -13,18 +13,19 @@ use JMS\Serializer\Annotation\Exclude;
 use FOS\MessageBundle\Model\ParticipantInterface;
 
 /**
-* @ORM\Entity(repositoryClass="EcoJob\UserBundle\Repository\UserRepository")
-* @ORM\Table(name="utilisateur")
-*/
-class User extends BaseUser implements ParticipantInterface
-{
+ * @ORM\Entity(repositoryClass="EcoJob\UserBundle\Repository\UserRepository")
+ * @ORM\Table(name="utilisateur")
+ */
+class User extends BaseUser implements ParticipantInterface {
+
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-     /**
+
+    /**
      *
      * @Assert\Regex("/^[a-zA-Z0-9 ]+$/",
      *     pattern=true,
@@ -32,78 +33,84 @@ class User extends BaseUser implements ParticipantInterface
      * )    
      */
     protected $username;
+
     /**
-    * @ORM\ManyToOne(targetEntity="EcoJob\UserBundle\Entity\Type",inversedBy="users")
-    * @ORM\JoinColumn(nullable=false)
-    */    
+     * @ORM\ManyToOne(targetEntity="EcoJob\UserBundle\Entity\Type",inversedBy="users")
+     * @ORM\JoinColumn(nullable=false)
+     */
     private $type;
-     
 
     /**
-    * @ORM\OneToOne(targetEntity="EcoJob\CandidatBundle\Entity\CuVi",cascade={"persist"})
-    * @Exclude     
-    */
-    private $curriculum;   
+     * @ORM\OneToOne(targetEntity="EcoJob\CandidatBundle\Entity\CuVi",cascade={"remove"},orphanRemoval=true)
+     * @Exclude     
+     */
+    private $curriculum;
 
     /**
-    * @ORM\OneToOne(targetEntity="EcoJob\CandidatBundle\Entity\CVFile",cascade={"persist"})
-    * @Exclude     
-    */
-    private $cvFile;     
-    
+     * @ORM\OneToOne(targetEntity="EcoJob\CandidatBundle\Entity\CVFile",cascade={"remove"},orphanRemoval=true)
+     * @Exclude     
+     */
+    private $cvFile;
+
     /**
-    * @ORM\OneToMany(targetEntity="EcoJob\RecruteurBundle\Entity\Offre",mappedBy="recruteur",orphanRemoval=true)
-    * @Exclude     
-    */    
-    private $offres;    
+     * @ORM\OneToMany(targetEntity="EcoJob\RecruteurBundle\Entity\Offre",mappedBy="recruteur",orphanRemoval=true)
+     * @ORM\JoinColumn(onDelete="CASCADE")     
+     * @Exclude     
+     */
+    private $offres;
 
     /**
      *
-     * @ORM\OneToMany(targetEntity="EcoJob\CandidatBundle\Entity\Candidature", mappedBy="candidat")
+     * @ORM\OneToMany(targetEntity="EcoJob\CandidatBundle\Entity\Candidature", mappedBy="candidat",orphanRemoval=true)
+     * @ORM\JoinColumn(onDelete="CASCADE")           
      * @ORM\OrderBy({"date_candidature" = "DESC"})
+     * 
      */
-    private $candidatures;    
+    private $candidatures;
 
     /**
-    * @ORM\ManyToMany(targetEntity="EcoJob\RecruteurBundle\Entity\Offre",cascade={"persist"})
-    * @Exclude    
-    */
-    private $postuled;    
+     *
+     * @ORM\OneToMany(targetEntity="EcoJob\CandidatBundle\Entity\Candidature", mappedBy="recruteur",orphanRemoval=true)
+     * @ORM\JoinColumn(onDelete="CASCADE")           
+     * 
+     */
+    private $cdtures_rec;    
     
- 
+    /**
+     * @ORM\ManyToMany(targetEntity="EcoJob\RecruteurBundle\Entity\Offre",cascade={"persist"})
+     * @Exclude    
+     */
+    private $postuled;
 
-    public function getType()
-    {
+    public function getType() {
         return $this->type;
     }
-    
-    public function setType(\EcoJob\UserBundle\Entity\Type $type)
-    {
+
+    public function setType(\EcoJob\UserBundle\Entity\Type $type) {
         $this->type = $type;
         return $this;
     }
-    
+
     /**
      * @CaptchaAssert\ValidCaptcha(
-     *      message = "CAPTCHA validation failed, try again."
+     *      message = "Validation CAPTCHA échouée, veuillez réessayer."
      * )
      */
     protected $captchaCode;
 
-    public function getCaptchaCode()
-    {
-      return $this->captchaCode;
+    public function getCaptchaCode() {
+        return $this->captchaCode;
     }
 
-    public function setCaptchaCode($captchaCode)
-    {
-      $this->captchaCode = $captchaCode;
+    public function setCaptchaCode($captchaCode) {
+        $this->captchaCode = $captchaCode;
     }
-    public function __construct()
-    {
-      parent::__construct();
-      $this->createdAt = new \DateTime();
-    }    
+
+    public function __construct() {
+        parent::__construct();
+        $this->createdAt = new \DateTime();
+    }
+
     /**
      * @ORM\Column(type="datetime",nullable=true)
      *
@@ -116,10 +123,9 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return \DateTime 
      */
-    public function getCreatedAt()
-    {
+    public function getCreatedAt() {
         return $this->createdAt;
-    }    
+    }
 
     /**
      * Set createdAt
@@ -128,8 +134,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return User
      */
-    public function setCreatedAt($createdAt)
-    {
+    public function setCreatedAt($createdAt) {
         $this->createdAt = $createdAt;
 
         return $this;
@@ -142,8 +147,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return User
      */
-    public function setCurriculum(\EcoJob\CandidatBundle\Entity\CuVi $curriculum = null)
-    {
+    public function setCurriculum(\EcoJob\CandidatBundle\Entity\CuVi $curriculum = null) {
         $this->curriculum = $curriculum;
 
         return $this;
@@ -154,8 +158,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return \EcoJob\CandidatBundle\Entity\CuVi
      */
-    public function getCurriculum()
-    {
+    public function getCurriculum() {
         return $this->curriculum;
     }
 
@@ -166,8 +169,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return User
      */
-    public function addOffre(\EcoJob\RecruteurBundle\Entity\Offre $offre)
-    {
+    public function addOffre(\EcoJob\RecruteurBundle\Entity\Offre $offre) {
         $this->offres[] = $offre;
         $offre->setRecruteur($this);
         return $this;
@@ -184,8 +186,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getOffres()
-    {
+    public function getOffres() {
         return $this->offres;
     }
 
@@ -194,11 +195,9 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @param \EcoJob\RecruteurBundle\Entity\Offre $offre
      */
-    public function removeOffre(\EcoJob\RecruteurBundle\Entity\Offre $offre)
-    {
+    public function removeOffre(\EcoJob\RecruteurBundle\Entity\Offre $offre) {
         $this->offres->removeElement($offre);
     }
-
 
     /**
      * Add postuled
@@ -207,8 +206,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return User
      */
-    public function addPostuled(\EcoJob\RecruteurBundle\Entity\Offre $postuled)
-    {
+    public function addPostuled(\EcoJob\RecruteurBundle\Entity\Offre $postuled) {
         $this->postuled[] = $postuled;
 
         return $this;
@@ -219,8 +217,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @param \EcoJob\RecruteurBundle\Entity\Offre $postuled
      */
-    public function removePostuled(\EcoJob\RecruteurBundle\Entity\Offre $postuled)
-    {
+    public function removePostuled(\EcoJob\RecruteurBundle\Entity\Offre $postuled) {
         $this->postuled->removeElement($postuled);
     }
 
@@ -229,16 +226,14 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getPostuled()
-    {
+    public function getPostuled() {
         $non_suspended_offre = array();
-        foreach($this->postuled as $offre){
-            if(!$offre->getSuspendu()) $non_suspended_offre[] = $offre;
+        foreach ($this->postuled as $offre) {
+            if (!$offre->getSuspendu())
+                $non_suspended_offre[] = $offre;
         }
         return $non_suspended_offre;
-                
     }
-
 
     /**
      * Add candidature
@@ -247,10 +242,9 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return User
      */
-    public function addCandidature(\EcoJob\CandidatBundle\Entity\Candidature $candidature)
-    {
+    public function addCandidature(\EcoJob\CandidatBundle\Entity\Candidature $candidature) {
         $this->candidatures[] = $candidature;
-    
+
         return $this;
     }
 
@@ -259,8 +253,7 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @param \EcoJob\CandidatBundle\Entity\Candidature $candidature
      */
-    public function removeCandidature(\EcoJob\CandidatBundle\Entity\Candidature $candidature)
-    {
+    public function removeCandidature(\EcoJob\CandidatBundle\Entity\Candidature $candidature) {
         $this->candidatures->removeElement($candidature);
     }
 
@@ -269,10 +262,9 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getCandidatures()
-    {
+    public function getCandidatures() {
         return $this->candidatures;
-    }    
+    }
 
     /**
      * Set cvFile
@@ -281,10 +273,9 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return User
      */
-    public function setCvFile(\EcoJob\CandidatBundle\Entity\CVFile $cvFile = null)
-    {
+    public function setCvFile(\EcoJob\CandidatBundle\Entity\CVFile $cvFile = null) {
         $this->cvFile = $cvFile;
-    
+
         return $this;
     }
 
@@ -293,8 +284,8 @@ class User extends BaseUser implements ParticipantInterface
      *
      * @return \EcoJob\CandidatBundle\Entity\CVFile
      */
-    public function getCvFile()
-    {
+    public function getCvFile() {
         return $this->cvFile;
     }
+
 }

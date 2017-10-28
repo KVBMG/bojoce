@@ -69,6 +69,14 @@ class User extends BaseUser implements ParticipantInterface {
     private $candidatures;
 
     /**
+     *
+     * @ORM\OneToMany(targetEntity="EcoJob\CandidatBundle\Entity\Candidature", mappedBy="recruteur",orphanRemoval=true)
+     * @ORM\JoinColumn(onDelete="CASCADE")           
+     * @Exclude
+     */
+    private $cdtures_rec;    
+    
+    /**
      * @ORM\ManyToMany(targetEntity="EcoJob\RecruteurBundle\Entity\Offre",cascade={"persist"})
      * @Exclude    
      */
@@ -280,4 +288,38 @@ class User extends BaseUser implements ParticipantInterface {
         return $this->cvFile;
     }
 
+
+    /**
+     * Add cdturesRec
+     *
+     * @param \EcoJob\CandidatBundle\Entity\Candidature $cdturesRec
+     *
+     * @return User
+     */
+    public function addCdturesRec(\EcoJob\CandidatBundle\Entity\Candidature $cdturesRec)
+    {
+        $this->cdtures_rec[] = $cdturesRec;
+    
+        return $this;
+    }
+
+    /**
+     * Remove cdturesRec
+     *
+     * @param \EcoJob\CandidatBundle\Entity\Candidature $cdturesRec
+     */
+    public function removeCdturesRec(\EcoJob\CandidatBundle\Entity\Candidature $cdturesRec)
+    {
+        $this->cdtures_rec->removeElement($cdturesRec);
+    }
+
+    /**
+     * Get cdturesRec
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCdturesRec()
+    {
+        return $this->cdtures_rec;
+    }
 }

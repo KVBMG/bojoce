@@ -6,7 +6,9 @@
 
 {% block content_stitle %} Offres d'emploi {% endblock %}
 
-{% block scontent %}   
+{% block scontent %} 
+        {{parent()}} 
+
     <div class="latest_news">
         <div class="title7">Recherche</div>
         <form id="searchForm">           

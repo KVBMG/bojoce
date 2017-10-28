@@ -17,20 +17,24 @@ use EcoJob\RecruteurBundle\Model\OffreSearch;
 class RecruteurController extends Controller {
 
     public function indexAction() {
+        $this->getNumbers();
         return $this->render('EcoJobRecruteurBundle:Recruteur:index.html.twig');
     }
 
     public function listAction() {
+        $this->getNumbers();
         $em = $this->getDoctrine()->getEntityManager();
         $offres = $this->getUser()->getOffres();
         return $this->render('EcoJobRecruteurBundle:Recruteur:list.html.twig', array('offres' => $offres));
     }
 
     public function showAction(Offre $offre) {
+        $this->getNumbers();
         return $this->render('EcoJobRecruteurBundle:Recruteur:show.html.twig', array('offre' => $offre));
     }
 
     public function editAction(offre $offre, Request $request) {
+        $this->getNumbers();
         $form = $this->createForm(new OffreType(), $offre);
         $form->handleRequest($request);
         if ($request->getMethod() == 'POST') {
@@ -46,6 +50,7 @@ class RecruteurController extends Controller {
     }
 
     public function deleteAction(offre $offre, Request $request) {
+        $this->getNumbers();
         $em = $this->getDoctrine()->getEntityManager();
         $em->remove($offre);
         $em->flush();
@@ -53,6 +58,7 @@ class RecruteurController extends Controller {
     }
 
     public function createAction(Request $request) {
+        $this->getNumbers();
         $offre = new Offre();
         $form = $this->createForm(new OffreType(), $offre);
         $form->handleRequest($request);
@@ -91,6 +97,7 @@ class RecruteurController extends Controller {
     }
 
     public function doSearchAction() {
+        $this->getNumbers();
         $em = $this->getDoctrine()->getManager();
         $results = $em->getRepository('EcoJobRecruteurBundle:Offre')->findBy(array('valid' => true,'suspendu' => false));
         $mines = $this->getUser()->getPostuled();
@@ -105,6 +112,7 @@ class RecruteurController extends Controller {
             'offres' => $results,'added'=>$added));
     }
     public function candidatureListeAction(Request $request){
+        $this->getNumbers();
         $user_id = $this->getUser()->getId();
         return $this->render('EcoJobRecruteurBundle:Recruteur:candidatures.html.twig', array(
             'user_id' => $user_id
@@ -156,11 +164,12 @@ class RecruteurController extends Controller {
     }
 
     public function candidatureDetailAction($id,Request $request) {
+        $this->getNumbers();
         $candidature = $this->getDoctrine()->getManager()->getRepository('EcoJobCandidatBundle:Candidature')->find($id);
         return $this->render('EcoJobRecruteurBundle:Recruteur:candidature-detail.html.twig',array('candidature' => $candidature));
     }
     public function banquecvAction(Request $request){
-        
+        $this->getNumbers();
         return $this->render('EcoJobRecruteurBundle:Recruteur:banquecv.html.twig');
     }
     public function searchAjaxAction(Request $request) {
@@ -182,5 +191,21 @@ class RecruteurController extends Controller {
         }
         $res = $serializer->serialize($results, 'json');
         return new Response($res);
+    }    
+    protected function getNumbers() {
+        $em = $this->getDoctrine()->getEntityManager();
+        $offres = count($this->getUser()->getOffres());
+        $repo = $em->getRepository("EcoJobCandidatBundle:Candidature");
+        $qb = $repo->createQueryBuilder('c');
+        $qb->select('COUNT(c)')
+           ->andWhere('c.recruteur = :recruteur')
+           ->setParameter('recruteur', $this->getUser());
+        $candidatures = $qb->getQuery()->getSingleScalarResult();
+
+        $canditatures = count($this->getUser()->getCandidatures());
+
+        $this->get('session')->set('offres', $offres);  
+        $this->get('session')->set('candidatures',$candidatures);                        
+        return true;
     }    
 }

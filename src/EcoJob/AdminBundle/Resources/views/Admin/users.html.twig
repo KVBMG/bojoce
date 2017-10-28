@@ -10,36 +10,96 @@
 {% block scontent %}   
     <div class="latest_news">
         <div class="title7">Liste des candidats qui viennent de créer leur compte depuis ces 7 derniers jous</div>
-        {% if candidats is not empty %}
-            {% for candidat in candidats %}
-                <div class="news1">
-                    <div class="txt1">Inscrit(e) depuis le {{candidat.createdAt |date("d/m/Y")}}</div>
-                    <div class="txt2"><a href="#">{{candidat.username}}</a></div>
-                    <div class="txt3">{{candidat.email}}</div>
-                    <a href="{{ path('eco_job_admin_candidat_cv',{'id': candidat.id})}}" class="btn-default btn3">Voir son CV</a>                 
-                    <a href="{{ path('eco_job_admin_user_delete',{'id': candidat.id})}}" class="btn-default btn3">Supprimer le compte</a>                    
-                </div>
-            {% endfor %}    
-        {% else %}
-            Aucun
-        {% endif %}
+        <table id="candidatTable" class="table table-striped jambo_table bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
+            <thead>
+                <tr role="row">
+                    <th>Id</th> 
+                    <th>Date d'inscription</th>  
+                    <th>Nom</th>
+                    <th>E-mail</th>
+                    <th>Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Id</th> 
+                    <th>Date d'inscription</th>                  
+                    <th>Nom</th>
+                    <th>E-mail</th>
+                    <th>Type</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+        </table>            
 
         <div class="title7">Liste des recruteurs qui viennent de créer leur compte depuis ces 7 derniers jous</div>
-        {% if recruteurs is not empty %}
-            {% for recruteur in recruteurs %}
-                <div class="news1">
-                    <div class="txt1"> Inscrit(e) depuis le  {{recruteur.createdAt |date("d/m/Y")}}</div>
-                    <div class="txt2"><a href="#">{{recruteur.username}}</a></div>
-                    <div class="txt3">{{recruteur.email}}</div>
-                    <a href="{{ path('eco_job_admin_recruteur_offres',{'id': recruteur.id})}}" class="btn-default btn3">Voir ses offres d'emploi</a>                
-                    <a href="{{ path('eco_job_admin_user_delete',{'id': recruteur.id})}}" class="btn-default btn3">Supprimer le compte</a>                    
-                </div>
-            {% endfor %}      
-        {% else %}
-            Aucun
-        {% endif %}
+        <table id="recruteurTable" class="table table-striped jambo_table bulk_action dt-responsive nowrap" cellspacing="0" width="100%">
+            <thead>
+                <tr role="row">
+                    <th>Id</th> 
+                    <th>Date d'inscription</th>  
+                    <th>Nom</th>
+                    <th>E-mail</th>
+                    <th>Type</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    <th>Id</th> 
+                    <th>Date d'inscription</th>                  
+                    <th>Nom</th>
+                    <th>E-mail</th>
+                    <th>Type</th>
+                    <th>Action</th>
+                </tr>
+            </tfoot>
+        </table>     
+
     </div>
 
     {{parent()}} 
-
+    <div style="z-index:2016;" class="modal fade " id="globModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" >Alerte</h4>
+                </div>
+                <div class="modal-body">
+                    Etes-vous sûr de vouloir supprimer cet utilisateur?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-primary valider">Valider</button>
+                </div>            
+            </div>
+        </div>
+    </div> 
+    <div style="z-index:2016;" class="modal fade " id="profilModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" >Alerte</h4>
+                </div>
+                <div class="modal-body">
+                    Profil
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>            
+            </div>
+        </div>
+    </div>    
 {% endblock %}  
+{% block javascripts %}
+    {{parent()}}
+    <script type="text/javascript" src="{{asset('js/jquery.blockUI.js')}}"></script>     
+    <script src="{{ asset("js/jquery.dataTables.min.js")}}"></script>    
+    <script src="{{ asset("js/dataTables.bootstrap.min.js")}}"></script>
+    <script src="{{asset('js/fnReloadAjax.js')}}"></script>
+    <script> var table = ""; var table2 ="";</script>    
+    <script src="{{asset('js/admin_candidat.js')}}"></script>    
+{% endblock %}

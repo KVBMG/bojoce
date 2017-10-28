@@ -75,14 +75,28 @@ class AdminController extends Controller {
         return $this->redirectToRoute('eco_job_admin_recruteur_offre', array('id' => $offre->getId()));
     }
 
-    public function getUsersAction() {
+    public function getUsersAction(Request $request) {
         $this->getNumbers();
-        $em = $this->getDoctrine()->getManager();
-        $candidats = $em->getRepository('EcoJobUserBundle:User')->getNewlyCandidat();
-        $recruteurs = $em->getRepository('EcoJobUserBundle:User')->getNewlyRecruteur();
-        return $this->render('EcoJobAdminBundle:Admin:users.html.twig', array('candidats' => $candidats, 'recruteurs' => $recruteurs));
+        return $this->render('EcoJobAdminBundle:Admin:users.html.twig');
     }
-
+    public function getNewCandidatAction(Request $request){
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $candidats = $em->getRepository('EcoJobUserBundle:User')->getNewlyCandidat();    
+            $serializer = $this->container->get('jms_serializer');
+            $res = $serializer->serialize($candidats, 'json');
+            return new Response($res);            
+        }
+    }
+    public function getNewRecruteurAction(Request $request){
+        if ($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $recruteurs = $em->getRepository('EcoJobUserBundle:User')->getNewlyRecruteur();    
+            $serializer = $this->container->get('jms_serializer');
+            $res = $serializer->serialize($recruteurs, 'json');
+            return new Response($res);            
+        }
+    }    
     public function showCVAction(User $user) {
         $this->getNumbers();
         $cv = $user->getCurriculum();
@@ -234,12 +248,12 @@ class AdminController extends Controller {
         $repo = $em->getRepository("EcoJobRecruteurBundle:Offre");
         $qb = $repo->createQueryBuilder('o');
         $qb->select('COUNT(o)');
-        $count_offres = $qb->getQuery()->getSingleScalarResult();  
+        $count_offres = $qb->getQuery()->getSingleScalarResult();
         $expired = count($em->getRepository('EcoJobRecruteurBundle:Offre')->getExpiredNow());
-        $this->get('session')->set('newUsers', $newUsers);  
-        $this->get('session')->set('users', $count_users);        
-        $this->get('session')->set('offres', $count_offres);     
-        $this->get('session')->set('expired', $expired);                        
+        $this->get('session')->set('newUsers', $newUsers);
+        $this->get('session')->set('users', $count_users);
+        $this->get('session')->set('offres', $count_offres);
+        $this->get('session')->set('expired', $expired);
         return true;
     }
 

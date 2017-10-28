@@ -4,8 +4,9 @@
         Total {{ offres|length }}       
         {% if not app.user %}
             {% for offre in offres %}
-                <div class="news1 offre" offreId="{{offre.id}}">
+                <div class="news1 offre" offreId="{{offre.id}}">                    
                     <div class="txt2"><a href="#details">{{offre.titre}}</a></div>
+                    <div class="txt1">Ajoutée le {{offre.createdAt | date('d-m-y')}}</div>                
                     <div class="txt3">{{offre.localisation}}</div>
                 </div>
             {% endfor %} 

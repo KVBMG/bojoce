@@ -32,6 +32,11 @@ class Candidature
     * @ORM\JoinColumn(nullable=false,onDelete="CASCADE")
      */
     private $candidat;
+    /**
+     * @ORM\ManyToOne(targetEntity="EcoJob\UserBundle\Entity\User", inversedBy="cdtures_rec")
+    * @ORM\JoinColumn(nullable=false,onDelete="CASCADE")
+     */
+    private $recruteur;    
 
     /**
      * @var string
@@ -165,5 +170,29 @@ class Candidature
     public function getCandidat()
     {
         return $this->candidat;
+    }
+
+    /**
+     * Set recruteur
+     *
+     * @param \EcoJob\UserBundle\Entity\User $recruteur
+     *
+     * @return Candidature
+     */
+    public function setRecruteur(\EcoJob\UserBundle\Entity\User $recruteur)
+    {
+        $this->recruteur = $recruteur;
+    
+        return $this;
+    }
+
+    /**
+     * Get recruteur
+     *
+     * @return \EcoJob\UserBundle\Entity\User
+     */
+    public function getRecruteur()
+    {
+        return $this->recruteur;
     }
 }

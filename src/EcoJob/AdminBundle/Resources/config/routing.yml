@@ -6,6 +6,20 @@ eco_job_admin_users:
     path:     /users/list
     defaults: { _controller: "EcoJobAdminBundle:Admin:getUsers" }
     methods:  GET
+    options:
+        expose: true
+eco_job_admin_users_new_candidat:
+    path:     /users/new/candidat
+    defaults: { _controller: "EcoJobAdminBundle:Admin:getNewCandidat" }
+    methods:  GET
+    options:
+        expose: true 
+eco_job_admin_users_new_recruteur:
+    path:     /users/new/recruteur
+    defaults: { _controller: "EcoJobAdminBundle:Admin:getNewRecruteur" }
+    methods:  GET
+    options:
+        expose: true         
 eco_job_admin_candidat_cv:
     path:     /users/cv/{id}
     defaults: { _controller: "EcoJobAdminBundle:Admin:showCV" }

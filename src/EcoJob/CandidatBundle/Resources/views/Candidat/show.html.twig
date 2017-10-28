@@ -7,6 +7,8 @@
 {% block content_stitle %} Mon CV {% endblock %}
 
 {% block scontent %}   
+    {{parent()}} 
+    
     <div class="title6">Mon CV </div>
 
     <div class="team1 clearfix">
@@ -28,6 +30,5 @@
         {% endif %}
     </div>
 </div>
-{{parent()}} 
 
 {% endblock %}  
