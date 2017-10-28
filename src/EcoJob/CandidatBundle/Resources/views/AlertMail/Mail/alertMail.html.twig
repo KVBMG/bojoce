@@ -86,10 +86,11 @@ a {
                             <div class="title">Bonjour {{ prenom }} , {{ offres | length}} offre d'emplois pour vous</div>
                                 <div class="content">
                                     <p>
+                                        Les voici:
                                      {% for offre in offres %}
-                                        <div>
-                                            <a href="{{ path('eco_job_candidat_offre', {'id': offre.id}) }}">{{ loop.index }} -  {{ offre.titre }} ({{ offre.contrat.libelle }})</a>
-                                        </div>
+                                        <ul>
+                                            <li><a href="{{ path('eco_job_candidat_offre', {'id': offre.id}) }}">{{ loop.index }} -  {{ offre.titre }} ({{ offre.contrat.libelle }})</a></li>
+                                        </ul>
                                        {% endfor %}
                                     </p>
                                   </div>
