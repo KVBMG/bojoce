@@ -16,7 +16,7 @@ class CuViRepository extends \Doctrine\ORM\EntityRepository {
                 ->orderBy('c.updatedAt', 'DESC')
                 ->setFirstResult($offset)
                 ->setMaxResults($limit);
-        if($secteur != 0){
+        if($secteur != NULL){
                 $qb->leftJoin('c.secteur','s')
                 ->where('s.id = :sect')
                 ->setParameter('sect', $secteur);            
