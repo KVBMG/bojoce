@@ -7,6 +7,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
+use JMS\Serializer\Annotation\Exclude;
+
 
 /**
  * CuVi
@@ -103,6 +105,49 @@ class CuVi
      * @var \DateTime
      */
     private $updatedAt;
+    
+    /**
+     * @ORM\Column(type="string", length=255, nullable=false)
+     *
+     * @var string
+     */
+    private $poste;    
+    
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="latitude", type="float")
+     * @Assert\NotNull(message = "Veuillez choisir la localisation parmi les propositions fournies par Google")
+     */    
+    private $latitude;
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="longitude", type="float")
+     * @Assert\NotNull(message = "Veuillez choisir la localisation parmi les propositions fournies par Google")
+     */    
+    private $longitude;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="localisation", type="string", length=20)
+     * @Assert\NotBlank()          
+     */    
+    private $localisation;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="experience", type="integer")
+     * @Assert\NotNull()
+     */
+    private $experience;    
+
+     /**
+    * @ORM\ManyToMany(targetEntity="EcoJob\RecruteurBundle\Entity\ContratCategorie")
+    * @Exclude 
+    */  
+    private $secteur;    
     
     /**
      * Get id
@@ -278,4 +323,165 @@ class CuVi
         return $this->imageFile;
     }
     
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->secteur = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set poste
+     *
+     * @param string $poste
+     *
+     * @return CuVi
+     */
+    public function setPoste($poste)
+    {
+        $this->poste = $poste;
+    
+        return $this;
+    }
+
+    /**
+     * Get poste
+     *
+     * @return string
+     */
+    public function getPoste()
+    {
+        return $this->poste;
+    }
+
+    /**
+     * Set latitude
+     *
+     * @param float $latitude
+     *
+     * @return CuVi
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+    
+        return $this;
+    }
+
+    /**
+     * Get latitude
+     *
+     * @return float
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * Set longitude
+     *
+     * @param float $longitude
+     *
+     * @return CuVi
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+    
+        return $this;
+    }
+
+    /**
+     * Get longitude
+     *
+     * @return float
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
+    }
+
+    /**
+     * Set localisation
+     *
+     * @param string $localisation
+     *
+     * @return CuVi
+     */
+    public function setLocalisation($localisation)
+    {
+        $this->localisation = $localisation;
+    
+        return $this;
+    }
+
+    /**
+     * Get localisation
+     *
+     * @return string
+     */
+    public function getLocalisation()
+    {
+        return $this->localisation;
+    }
+
+    /**
+     * Set experience
+     *
+     * @param integer $experience
+     *
+     * @return CuVi
+     */
+    public function setExperience($experience)
+    {
+        $this->experience = $experience;
+    
+        return $this;
+    }
+
+    /**
+     * Get experience
+     *
+     * @return integer
+     */
+    public function getExperience()
+    {
+        return $this->experience;
+    }
+
+    /**
+     * Add secteur
+     *
+     * @param \EcoJob\RecruteurBundle\Entity\ContratCategorie $secteur
+     *
+     * @return CuVi
+     */
+    public function addSecteur(\EcoJob\RecruteurBundle\Entity\ContratCategorie $secteur)
+    {
+        $this->secteur[] = $secteur;
+    
+        return $this;
+    }
+
+    /**
+     * Remove secteur
+     *
+     * @param \EcoJob\RecruteurBundle\Entity\ContratCategorie $secteur
+     */
+    public function removeSecteur(\EcoJob\RecruteurBundle\Entity\ContratCategorie $secteur)
+    {
+        $this->secteur->removeElement($secteur);
+    }
+
+    /**
+     * Get secteur
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSecteur()
+    {
+        return $this->secteur;
+    }
 }

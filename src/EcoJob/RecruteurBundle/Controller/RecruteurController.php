@@ -170,27 +170,28 @@ class RecruteurController extends Controller {
     }
     public function banquecvAction(Request $request){
         $this->getNumbers();
-        return $this->render('EcoJobRecruteurBundle:Recruteur:banquecv.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $cvs = $em->getRepository('EcoJobCandidatBundle:CuVi')->findBy(array(), array('updatedAt' => 'DESC'),10);        
+        $secteurs = $em->getRepository('EcoJobRecruteurBundle:ContratCategorie')->findAll();
+        return $this->render('EcoJobRecruteurBundle:Recruteur:banquecv.html.twig',array('secteurs'=>$secteurs,'cv'=>$cvs));
     }
     public function searchAjaxAction(Request $request) {
+        $em = $this->getDoctrine()->getManager();
         $keywords = $request->request->get('keywords');
-        $contrat = $request->request->get('contrat');
         $experience = $request->request->get('experience');
         $offset = $request->request->get('offset');
-        $limit = $request->request->get('limit');
-        $serializer = $this->container->get('jms_serializer');
-        $em = $this->getDoctrine()->getManager();
-        $results = $em->getRepository('EcoJobRecruteurBundle:Offre')->search($keywords, $contrat, $experience,$offset, $limit);
-        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
-            $mines = $this->getUser()->getPostuled();
-            for ($i = 0; $i < count($mines); $i++) {
-                if (($key = array_search($mines[$i], $results, TRUE)) !== FALSE) {
-                    $results[$key]->setAdded(true);
-                }
-            }
-        }
+        $localisation = $request->request->get('localication');
+        $secteur = $request->request->get('secteur');    
+        $secteur = $em->getRepository('EcoJobRecruteurBundle:ContratCategorie')->find($secteur);
+        $limit = $request->request->get('limit');        
+        $serializer = $this->container->get('jms_serializer');        
+        $results = $em->getRepository('EcoJobCandidatBundle:CuVi')->search($keywords, $experience,$localisation,$secteur,$offset, $limit);
         $res = $serializer->serialize($results, 'json');
-        return new Response($res);
+        $html = $this->renderView('EcoJobRecruteurBundle:Recruteur:cvresult.html.twig', array(
+            'cv' => $results));        
+        $response = new Response(json_encode(array("html" => $html,"objects"=>$res)));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }    
     protected function getNumbers() {
         $em = $this->getDoctrine()->getEntityManager();
@@ -207,5 +208,12 @@ class RecruteurController extends Controller {
         $this->get('session')->set('offres', $offres);  
         $this->get('session')->set('candidatures',$candidatures);                        
         return true;
-    }    
+    }
+    public function showCVAction(\EcoJob\CandidatBundle\Entity\CuVi $cv){
+        $html = $this->renderView('EcoJobRecruteurBundle:Recruteur:cv.html.twig', array(
+            'cv' => $cv));        
+        $response = new Response(json_encode($html));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;        
+    }
 }

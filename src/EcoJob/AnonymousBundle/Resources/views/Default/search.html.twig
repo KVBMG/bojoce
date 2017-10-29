@@ -7,6 +7,7 @@
 {% block content_stitle %} Offres d'emploi {% endblock %}
 
 {% block content %}   
+    {{parent()}}
     <div id="content" class="container">
         <div >
             <a href="{{path('eco_job_anonymous_map')}}">Avec carte de France</a>
@@ -15,10 +16,16 @@
             <div class="row">
                 <div class="col-sm-3">
                     <form id="searchForm">           
-                        <input type="text" id="searchBar" name="keywords" placehodler="Mots clés">
-                        <label for="exp">Expérience:</label>
-                        <select name="experience" id="exp">
-                             <option value="0">Tous</option>
+                        <div class="form-group">
+                            <label class="control-label required" for="searchBar">Mots clés</label>                          
+                            <input size="65" type="text" id="searchBar" class="form-control" name="keywords" placeholder="Mots clés">
+                            <p class="help-block">Ex:"gestion,médecine,..."</p>
+                        </div>
+                        <br/>
+                        <div class="form-group" >                        
+                        <label for="exp" class="control-label required">Expérience:</label>
+                        <select name="experience" id="exp" class="form-control">
+                            <option value="0">Tous</option>
                             <option value="1">1 an</option>
                             <option value="2">2 ans</option>
                             <option value="3">3 ans</option>
@@ -29,26 +36,27 @@
                             <option value="8">8 ans</option>
                             <option value="9">9 ans</option>
                             <option value="10">10 ans</option>
-                        </select>           
-                        <label for="radiobtn">Type de contrat:</label>
-                        <div class="radio radio-danger">
-                            <input type="radio" name="contrat" id="contrat3" value=0 checked>
-                            <label for="contrat3">Tous</label>
-                        </div>                
-                        <div class="radio radio-danger">
-                            <input type="radio" name="contrat" id="contrat2" value=1 >
-                            <label for="contrat2">CDD</label>
+
+                        </select>  
                         </div>
-                        <div class="radio radio-danger">
-                            <input type="radio" name="contrat" id="contrat1" value=2>
-                            <label for="contrat1">CDI</label>
+                        
+                        <div class="form-group">                        
+                        <label for="contrat" class="control-label required">Type de contrat:</label>
+                        <select name="contrat" id="contrat" class="form-control">
+                            <option value="0">Tous</option>
+                            <option value="1">CDD</option>
+                            <option value="2">CDI</option>
+                        </select>  
                         </div>
-                        <label for="limit">Nombre d'offre à afficher :</label>
-                        <select name="limit" id="limit">
+                        
+                        <div class="form-group">                        
+                        <label for="limit" class="control-label required">Nombre d'offre à afficher :</label>
+                        <select name="limit" id="limit" class="form-control">
                             <option value="10">10</option>
                             <option value="15">15</option>                            
                             <option value="20">20</option>
-                        </select>                        
+                        </select>  
+                        </div>                        
                         <input type="hidden" id="offset" name="offset" value="0" />                                                
                         <button class="btn-default btn1" id="reset">Reset</button>           
                     </form> 
@@ -82,12 +90,6 @@
             </div>
         </div>
     </div>    
-    <div class="latest_news">
-        <div class="title7">Recherche</div>
-
-        <br>
-
-    </div>
 
     <div style="z-index:2016;" class="modal fade " id="globModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
         <div class="modal-dialog" role="document">

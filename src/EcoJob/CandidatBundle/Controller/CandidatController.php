@@ -88,13 +88,18 @@ class CandidatController extends Controller {
         $this->getNumbers();
         
         $cv = new Cuvi();
-        $form = $this->createForm(new CuViType, $cv);
-
+        $em = $this->getDoctrine()->getManager();
+        $param = $em->getRepository('EcoJobCandidatBundle:ParamCandidat')->findBy(array('candidat' => $this->getUser()->getId()));     
+        $form = $this->createForm(new CuViType($param),$cv);
+        $form->handleRequest($request);
         if ($request->getMethod() == 'POST') {
-            $form->bind($request);
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getEntityManager();
                 $em->persist($cv);
+                $curcv = $this->getUser()->getCurriculum();
+                if( $curcv != NULL){
+                    $em->remove($curcv);
+                }
                 $this->getUser()->setCurriculum($cv);
                 $em->flush();
                 return $this->redirect($this->generateUrl('eco_job_candidat_cv_show')

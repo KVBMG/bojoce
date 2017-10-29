@@ -42,7 +42,7 @@ $(function () {
     $("#exp").on('change', function () {
         xhr = performSearch();
     })
-    $("input:radio[name='contrat']").on('change', function () {
+    $("#contrat").on('change', function () {
         xhr = performSearch();
     });
     $("#reset").click(function (e) {

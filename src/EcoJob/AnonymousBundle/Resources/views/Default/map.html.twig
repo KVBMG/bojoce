@@ -21,11 +21,15 @@
                 <div class="col-sm-5">    
                     <form id="searchForm" class="form-horizontal">           
 
-                        <input size="65" type="text" id="searchBar" name="keywords" placehodler="Mots clés">
-
+                        <div class="form-group">
+                            <label class="control-label required" for="searchBar">Mots clés</label>                          
+                            <input size="65" type="text" id="searchBar" class="form-control" name="keywords" placeholder="Mots clés">
+                            <p class="help-block">Ex:"gestion,médecine,..."</p>
+                        </div>
                         <br/>
-                        <label for="exp">Expérience:</label>
-                        <select name="experience" id="exp">
+                        <div class="form-group" >                        
+                        <label for="exp" class="control-label required">Expérience:</label>
+                        <select name="experience" id="exp" class="form-control">
                             <option value="0">Tous</option>
                             <option value="1">1 an</option>
                             <option value="2">2 ans</option>
@@ -38,20 +42,29 @@
                             <option value="9">9 ans</option>
                             <option value="10">10 ans</option>
 
-                        </select>    
-                        <label for="contrat">Type de contrat:</label>
-                        <select name="contrat" id="contrat">
+                        </select>  
+                        </div>
+                        
+                        <div class="form-group">                        
+                        <label for="contrat" class="control-label required">Type de contrat:</label>
+                        <select name="contrat" id="contrat" class="form-control">
                             <option value="0">Tous</option>
                             <option value="1">CDD</option>
                             <option value="2">CDI</option>
-                        </select>                                
-                        <label for="limit">Nombre d'offre à afficher :</label>
-                        <select name="limit" id="limit">
+                        </select>  
+                        </div>
+                        
+                        <div class="form-group">                        
+                        <label for="limit" class="control-label required">Nombre d'offre à afficher :</label>
+                        <select name="limit" id="limit" class="form-control">
                             <option value="10">10</option>
                             <option value="15">15</option>                            
                             <option value="20">20</option>
                         </select>  
-                        <input type="hidden" id="offset" name="offset" value="0" />                        
+                        </div>
+                        
+                        <input type="hidden" id="offset" name="offset" value="0" />         
+                        <br>
                         <button class="btn-default btn1" id="reset">Reset</button>           
                     </form>  
                     <br/>

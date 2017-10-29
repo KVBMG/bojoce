@@ -17,7 +17,19 @@
         <div class="caption">
             <div class="txt1">{{cv.nom}} {{cv.prenom}}</div>
             <div class="txt2">{{cv.telephone}}</div>
-            <div class="txt3">{{cv.about}}</div>
+            <div class="txt3">{{cv.poste}}</div>            
+            <div class="txt3">A propos de moi: {{cv.about}}</div>
+            <div class="txt3">Lieu: {{cv.localisation}}</div>
+            <div class="txt3">Années d'experience: {{cv.experience}}</div>
+            {% if cv.secteur is not null %}
+                <div class="txt2">Secteur(s) d'activité(s)</div>
+                    <ul>
+                {% for s in cv.secteur %}
+                    <li> <div class="txt3">{{s.designation}}</div> </li>                                 
+                {% endfor %}
+                <ul>
+            {% endif %}
+            
             <a href="{{ path('eco_job_candidat_cv_edit')}}" class="btn-default btn3">Modifier</a>
             <a href="{{ path('eco_job_candidat_cv_delete')}}" class="btn-default btn3">Supprimer</a>
             {% if app.user.cvName is defined %}
