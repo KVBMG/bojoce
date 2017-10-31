@@ -13,12 +13,14 @@ class CuViRepository extends \Doctrine\ORM\EntityRepository {
     public function search($keywords, $experience, $localisation, $secteur, $offset, $limit) {
 
         $qb = $this->createQueryBuilder('c')
-                ->leftJoin('c.secteur','s')
-                ->where('s.id = :sect')
-                ->setParameter('sect', $secteur)
                 ->orderBy('c.updatedAt', 'DESC')
                 ->setFirstResult($offset)
                 ->setMaxResults($limit);
+        if($secteur != NULL){
+                $qb->leftJoin('c.secteur','s')
+                ->where('s.id = :sect')
+                ->setParameter('sect', $secteur);            
+        }
         if (!empty($localisation)) {
             $qb->andWhere('c.localisation LIKE :loc')
                     ->setParameter('loc', "%localisation%");

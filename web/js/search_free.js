@@ -164,7 +164,9 @@ $(function () {
         showOffre($(this).attr('offreId'));
     });
     $("#offreList").scroll($.debounce(addMore, 500));
-
+    $(document).on('click', '.save', function () {
+        $('#globModal').modal('show');
+    });
     function addMore() {
         if ($(this).scrollTop() + $(this).innerHeight() == $(this)[0].scrollHeight) {
             if (!(is_processing && last_page)) {

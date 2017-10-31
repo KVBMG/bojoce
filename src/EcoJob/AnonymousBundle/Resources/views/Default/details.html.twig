@@ -6,7 +6,7 @@
         <div class="txt3">{{offre.contenu}}</div>  
         <div class="txt3">{{offre.localisation}}</div>  
         {% if not app.user %}
-            <a href="{{ path('fos_user_registration_register')}}" class="btn-default btn1">Save</a>
+            <a href="#details" class="btn-default btn1 save">Save</a>
             <a href="{{ path('eco_job_anonymous_offre_integralite',{ 'id': offre.id }) }}" class="btn-default btn1">Voir</a>
         {% else %}
             {% if offre.added %}
