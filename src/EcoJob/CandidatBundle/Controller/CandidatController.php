@@ -171,7 +171,19 @@ class CandidatController extends Controller {
         $em->flush();
         $offres = $this->getUser()->getPostuled();
         return $this->render('EcoJobCandidatBundle:Candidat:myoffres.html.twig', array('offres' => $offres));
-    }   
+    }
+    public function saveAsyncAction(Offre $offre, Request $request) {
+        if($request->isXmlHttpRequest()) {
+            $em = $this->getDoctrine()->getManager();
+            $this->getUser()->addPostuled($offre);
+            $em->flush();
+            $count = count($this->getUser()->getPostuled());
+
+            return new JsonResponse([
+                "saved" => $count,
+            ]);
+        }
+    }
 
     public function showOffreAction(Offre $offre) {
         $this->getNumbers();

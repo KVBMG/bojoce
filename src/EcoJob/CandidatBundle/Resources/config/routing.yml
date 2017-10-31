@@ -35,6 +35,12 @@ eco_job_candidat_offre_save:
     path:     /offre/{id}/save
     defaults: { _controller: "EcoJobCandidatBundle:Candidat:save" }
     methods:  [GET,POST]
+eco_job_candidat_offre_save_async:
+    path:     /offre/{id}/saveAsync
+    defaults: { _controller: "EcoJobCandidatBundle:Candidat:saveAsync" }
+    methods:  [GET,POST]
+    options:
+        expose:  true
 
 eco_job_candidat_offre_delete:
     path:     /offre/{id}/delete

@@ -11,7 +11,13 @@ class DefaultController extends Controller {
 
     public function mapAction() {
         $em = $this->getDoctrine()->getManager();
+        $mines = $this->getUser()->getPostuled();
         $results = $em->getRepository('EcoJobRecruteurBundle:Offre')->findBy(array('valid' => true,'suspendu'=>false,'modificationValided'=> true), array('createdAt' => 'DESC'),10);
+        for ($i = 0; $i < count($mines); $i++) {
+            if (($key = array_search($mines[$i], $results, TRUE)) !== FALSE) {
+                $results[$key]->setAdded(true);
+            }
+        }
         return $this->render('EcoJobAnonymousBundle:Default:map.html.twig', array('offres' => $results));
     }
 

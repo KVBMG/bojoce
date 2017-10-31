@@ -160,11 +160,8 @@ $(function () {
         });
     }
     ;
-    $(document).on('click', '.offre', function () {
+    $(document).on('click', '.offre:not(.offre>.cd-add-to-cart)', function () {
         showOffre($(this).attr('offreId'));
-    });
-    $(document).on('click', '.offre', function () {
-        showOffre($(this).attr('offreid'));
     });
     $("#offreList").scroll($.debounce(addMore, 500));
 
