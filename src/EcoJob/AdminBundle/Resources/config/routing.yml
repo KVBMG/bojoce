@@ -109,4 +109,8 @@ eco_job_admin_recruteur_offre_valider_edit:
 eco_job_admin_offres_edited:
     path:     /offres/list/edited
     defaults: { _controller: "EcoJobAdminBundle:Admin:getOffreEdited" }
-    methods:  GET     
+    methods:  GET 
+eco_job_admin_offres_suspendu:
+    path:     /offres/list/suspendu
+    defaults: { _controller: "EcoJobAdminBundle:Admin:getOffreSuspendu" }
+    methods:  GET 
