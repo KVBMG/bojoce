@@ -273,7 +273,7 @@ $(function () {
             if (responseText.length > 0) {
 
                 for (var i = 0; i < responseText.length; i++) {
-                    var html = "<div class='news1 offre' offreId=" + responseText[i].id + "><div class='txt2'><a href='#details'>" + responseText[i].titre + "</a></div><div class='txt3'>" + responseText[i].localisation + "</div></div>";
+                    var html = "<div class='news1 offre' offreId=" + responseText[i].id + "><div class='txt1'>Ajoutée le "+ new Date(responseText[i].created_at).toDateString() +"</div><div class='txt2'><a href='#details'>" + responseText[i].titre + "</a></div><div class='txt3'>" + responseText[i].localisation + "</div></div>";
                     $('#offreList').append(html);
                 }
             } else {
@@ -333,6 +333,9 @@ $(function () {
 
     $("#offreList").scroll($.debounce(addMore, 500));
 
+    $(document).on('click', '.save', function () {
+        $('#globModal').modal('show');
+    });
 
     function addMore() {
         if ($(this).scrollTop() + $(this).innerHeight() == $(this)[0].scrollHeight) {
