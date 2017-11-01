@@ -27,7 +27,6 @@
                             <input size="65" type="text" id="searchBar" class="form-control" name="keywords" placeholder="Mots clés">
                             <p class="help-block">Ex:"gestion,médecine,..."</p>
                         </div>
-                        <br/>
                         <div class="form-group" >
                         <label for="exp" class="control-label required">Expérience:</label>
                         <select name="experience" id="exp" class="form-control">
@@ -74,14 +73,14 @@
                 </div>
                 <div class="col-sm-4 latest_news srollko" id="offreList">
                     {% for offre in offres %}
-                        <div class="news1 offre" offreId="{{offre.id}}">
+                        <div class="news1" >
                             <div class="txt1">Ajoutée le {{offre.createdAt | date('d-m-y')}}</div>
 
-                            <div class="txt2"><a href="#details">{{offre.titre}}</a></div>
+                            <div class="txt2 offre" offreId="{{offre.id}}"><a href="#details">{{offre.titre}}</a></div>
                             <div class="txt3">{{offre.localisation}}</div>
                             <div class="btn-group">
                                 {% if not app.user %}
-                                    <a href="{{ path('fos_user_registration_register') }}" class="btn btn-default">
+                                    <a href="#details" class="btn btn-default save">
                                         <span class="glyphicon glyphicon-save"></span>
                                     </a>
                                 {% else %}

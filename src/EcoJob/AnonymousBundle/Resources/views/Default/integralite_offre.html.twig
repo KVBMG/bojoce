@@ -31,19 +31,18 @@
                     Share
                 </a>
             {% else %}
-                {% if saved %}
-                    <a href="#" class="btn-default btn-warning">Déja sauvegardée</a>
-                {% else %}
-                    <a href="#0" class="cd-add-to-cart btn-default btn1" data-offre-id="{{ offre.id }}" >
-                        <span class="glyphicon glyphicon-save">Save</span>
-                    </a>
-                {% endif %}
-                {% if postuled %}
-                    <a href="#" class="btn-default btn-warning">Déja postulé</a>
-                {% else %}
-                    <button class="btn-default btn1" id="postulerBtn" type="button" data-toggle="modal"
-                            data-target="#m-m-u">Postuler
-                    </button>
+                {% if is_granted('ROLE_CANDIDAT') %}
+
+                    {% if saved %}
+                        <a href="#" class="btn-default btn-warning">Déja sauvegardée</a>
+                    {% else %}
+                        <a href="{{ path('eco_job_candidat_offre_save',{'id': offre.id})}}" class="btn-default btn1">Save</a>
+                    {% endif %}
+                    {% if postuled %}
+                        <a href="#" class="btn-default btn-warning">Déja postulé</a>
+                    {% else %}
+                        <button class="btn-default btn1" id="postulerBtn" type="button" data-toggle="modal" data-target="#m-m-u" >Postuler</button>
+                    {% endif %}
                 {% endif %}
                 <a class="btn-default btn1" data-toggle="collapse" href="#collapseExample" aria-expanded="false"
                    aria-controls="collapseExample">

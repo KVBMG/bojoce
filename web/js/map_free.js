@@ -50,12 +50,12 @@ $(function () {
     function firstTime() {
         infowindow = new google.maps.InfoWindow();
         $.ajax({
-            url: Routing.generate('eco_job_anonymous_offres_json'),
+            url: Routing.generate('eco_job_anonymous_offre_search_ajax_templated'),
             type: 'GET',
             contentType: 'application/json',
             contentType: false,
             success: function (response) {
-                response = $.parseJSON(response);
+                response = $.parseJSON(response.objects);
                 locations = response;
             },
             error: function () {
@@ -190,7 +190,7 @@ $(function () {
         cache: false,
         beforeSubmit: showRequest,
         success: showResponse,
-        url: Routing.generate('eco_job_anonymous_offre_search_ajax'),
+        url: Routing.generate('eco_job_anonymous_offre_search_ajax_templated'),
         type: 'post',
         dataType: 'json'
     };
@@ -229,7 +229,7 @@ $(function () {
             zoom: 6,
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             zoomControl: true,
-            gestureHandling: 'greedy',            
+            gestureHandling: 'greedy',
             zoomControlOptions: {
                 style: google.maps.ZoomControlStyle.SMALL
             },
@@ -248,54 +248,56 @@ $(function () {
         perform = true;
     }
     function showResponse(responseText, statusText, xhr, $form) {
+        var resultats = $.parseJSON(responseText.objects);
         xhr = null;
         perform = false;
         if (!show_offre)
             removeMarkers();
-
         if (add_more) {
             console.log(locations);
-            if (responseText.length > 0) {
-                for (var i = 0; i < responseText.length; i++) {
-                    locations.push(responseText[i]);
+            if (resultats.length > 0) {
+                for (var i = 0; i < resultats.length; i++) {
+                    locations.push(resultats[i]);
                 }
             }
             console.log(locations);
         } else {
             locations = [];
-            locations = responseText;
+            locations = resultats;
             resetList();
             resetDiv();
         }
         fillMap();
         $('#google_map').unblock();
         if (!add_more) {
-            if (responseText.length > 0) {
+            resetDiv();
+            if (responseText.total > 0) {
+                resetDiv();
+                $("#offreList").append("<div class='title6'>Résultats </div> <br> Total: " + responseText.total);
+                $('#offreList').append(responseText.html);
 
-                for (var i = 0; i < responseText.length; i++) {
-                    var html = "<div class='news1 offre' offreId=" + responseText[i].id + "><div class='txt1'>Ajoutée le "+ new Date(responseText[i].created_at).toDateString() +"</div><div class='txt2'><a href='#details'>" + responseText[i].titre + "</a></div><div class='txt3'>" + responseText[i].localisation + "</div></div>";
-                    $('#offreList').append(html);
-                }
             } else {
                 if (!first) {
                     var html = "<div class='news1'><div class='txt2'>Aucune offre d'emploi trouvée</div><div class='txt3'></div></div>";
+                    resetDiv();
                     $('#offreList').append(html);
                 }
             }
+            $("#offreList").on('scroll', $.debounce(addMore, 500));
+
         } else {
             $(".loader").remove();
             $('#offreList').unblock();
+            if (responseText.total > 0) {
+                $('#offreList').append(responseText.html);
+                $("#offreList").on('scroll', $.debounce(addMore, 500));
 
-            if (responseText.length > 0) {
-                for (var i = 0; i < responseText.length; i++) {
-                    var html = "<div class='news1 offre' offreId=" + responseText[i].id + "><div class='txt2'><a href='#details'>" + responseText[i].titre + "</a></div><div class='txt3'>" + responseText[i].localisation + "</div></div>";
-                    $('#offreList').append(html);
-                }
             } else {
+                console.log("last_page");
+                console.log(responseText);
                 last_page = true;
                 $('#offreList').append("Fin de la correspondance");
             }
-
         }
     }
     function resetForm() {
@@ -307,7 +309,7 @@ $(function () {
     }
     function performSearch() {
         $("#offreList").children().remove().append("<div class='loader'></div>");
-        $("#offreList").append("<div class='loader'></div>");        
+        $("#offreList").append("<div class='loader'></div>");
         add_more = false;
         is_processing = false;
         last_page = false;
@@ -336,15 +338,13 @@ $(function () {
     $(document).on('click', '.save', function () {
         $('#globModal').modal('show');
     });
-
     function addMore() {
         if ($(this).scrollTop() + $(this).innerHeight() == $(this)[0].scrollHeight) {
             if (!(is_processing && last_page)) {
-                $("#offreList").append("<div class='loader'>Chargement</div>").scrollTop($(this)[0].scrollHeight);
-                $("#offreList").block();
-                first = false;
+                $("#offreList").off('scroll');
+                $("#offreList").append("<div class='loader'></div>").scrollTop($(this)[0].scrollHeight);
+                first = false
                 add_more = true;
-                show_offre = false;
                 is_processing = true;
                 var currOffset = parseInt($("#offset").val());
                 var limit = parseInt($("#limit").val());

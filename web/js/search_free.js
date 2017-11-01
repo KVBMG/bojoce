@@ -32,10 +32,10 @@ $(function () {
         var val = $("#searchBar").val();
         if ((val.length >= 3) || (val.length == 0) && (last_phrases != val)) {
             //if((val.slice(-1) != " ")){
-                console.log((val.slice(-1) != " "));
+            console.log((val.slice(-1) != " "));
             xhr = performSearch();
             last_phrases = this.value;
-        //}
+            //}
         }
 
     }
@@ -67,10 +67,11 @@ $(function () {
             console.log(responseText.responseJSON);
             if (!add_more) {
                 resetDetails();
-                if (responseText.objects.length > 0) {
+                if (responseText.total > 0) {
                     resetDiv();
+                    $("#offreList").append("<div class='title6'>Résultats </div> <br> Total: " + responseText.total);
                     $('#offreList').append(responseText.html);
-                    
+
                 } else {
                     if (!first) {
                         var html = "<div class='news1'><div class='txt2'>Aucune offre d'emploi trouvée</div><div class='txt3'></div></div>";
@@ -78,19 +79,22 @@ $(function () {
                         $('#offreList').append(html);
                     }
                 }
+                $("#offreList").on('scroll', $.debounce(addMore, 500));
+
             } else {
                 $(".loader").remove();
                 $('#offreList').unblock();
-                if (responseText.length > 0) {
+                if (responseText.total > 0) {
                     $('#offreList').append(responseText.html);
-                    $("#offreList").on('scroll', $.debounce(addMore, 500));                                
-                    
+                    $("#offreList").on('scroll', $.debounce(addMore, 500));
+
                 } else {
                     console.log("last_page");
                     console.log(responseText);
                     last_page = true;
                     $('#offreList').append("Fin de la correspondance");
-                }            }
+                }
+            }
         } else
             $('#offreList').append("Echec de la connexion au serveur");
     }
@@ -113,7 +117,7 @@ $(function () {
         $("#offreList").children().remove().append("<div class='loader'></div>");
         $("#offreList").append("<div class='loader'></div>");
         add_more = false;
-        is_processing = false;        
+        is_processing = false;
         first = false;
         $("#offset").val(0);
         if (xhr != null)
@@ -122,9 +126,9 @@ $(function () {
         var form = $("#searchForm").submit();
         xhr = form.data('jqxhr');
         console.log("perf");
-        console.log(last_page);  
-        console.log(add_more);        
-        
+        console.log(last_page);
+        console.log(add_more);
+
     }
 
     function showOffre(id) {
