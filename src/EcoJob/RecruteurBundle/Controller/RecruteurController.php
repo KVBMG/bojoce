@@ -171,7 +171,7 @@ class RecruteurController extends Controller {
     public function banquecvAction(Request $request){
         $this->getNumbers();
         $em = $this->getDoctrine()->getManager();
-        $cvs = $em->getRepository('EcoJobCandidatBundle:CuVi')->findBy(array(), array('updatedAt' => 'DESC'),10);        
+        $cvs = $em->getRepository('EcoJobCandidatBundle:CuVi')->findBy(array('showable'=> true), array('updatedAt' => 'DESC'),10);        
         $secteurs = $em->getRepository('EcoJobRecruteurBundle:ContratCategorie')->findAll();
         return $this->render('EcoJobRecruteurBundle:Recruteur:banquecv.html.twig',array('secteurs'=>$secteurs,'cv'=>$cvs));
     }

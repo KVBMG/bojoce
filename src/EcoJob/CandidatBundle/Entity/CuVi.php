@@ -150,6 +150,13 @@ class CuVi
     private $secteur;    
     
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="showable", type="boolean",options={"default": true},nullable=false)
+     */
+    private $showable;     
+    
+    /**
      * Get id
      *
      * @return int
@@ -483,5 +490,29 @@ class CuVi
     public function getSecteur()
     {
         return $this->secteur;
+    }
+
+    /**
+     * Set showable
+     *
+     * @param boolean $showable
+     *
+     * @return CuVi
+     */
+    public function setShowable($showable)
+    {
+        $this->showable = $showable;
+    
+        return $this;
+    }
+
+    /**
+     * Get showable
+     *
+     * @return boolean
+     */
+    public function getShowable()
+    {
+        return $this->showable;
     }
 }

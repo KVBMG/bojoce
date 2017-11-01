@@ -150,6 +150,13 @@ class CuVi
     private $secteur;    
     
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="showable", type="boolean",options={"default": true},nullable=false)
+     */
+    private $showable;     
+    
+    /**
      * Get id
      *
      * @return int

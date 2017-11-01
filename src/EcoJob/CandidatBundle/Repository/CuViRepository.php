@@ -13,6 +13,7 @@ class CuViRepository extends \Doctrine\ORM\EntityRepository {
     public function search($keywords, $experience, $localisation, $secteur, $offset, $limit) {
 
         $qb = $this->createQueryBuilder('c')
+                ->where('c.showable =  true')
                 ->orderBy('c.updatedAt', 'DESC')
                 ->setFirstResult($offset)
                 ->setMaxResults($limit);

@@ -110,3 +110,11 @@ eco_job_candidat_reset_param:
     path:     /compte/parametre/reset
     defaults: { _controller: "EcoJobCandidatBundle:Candidat:ResetParam" }
     methods:  GET
+eco_job_candidat_gerercv:
+    path:     /cv/gestion
+    defaults: { _controller: "EcoJobCandidatBundle:Candidat:gererCV" }
+    methods:  GET
+eco_job_candidat_gerercv_stop:
+    path:     /cv/gestion/{id}/stop
+    defaults: { _controller: "EcoJobCandidatBundle:Candidat:stop" }
+    methods:  GET    
