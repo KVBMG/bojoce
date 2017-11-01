@@ -7,7 +7,7 @@
         <div class="txt3">{{offre.localisation}}</div>  
         {% if not app.user %}
             <a href="#details" class="btn-default btn1 save">Save</a>
-            <a href="{{ path('eco_job_anonymous_offre_integralite',{ 'id': offre.id }) }}" class="btn-default btn1">Voir</a>
+            <a href="{{ path('eco_job_anonymous_offre_integralite',{ 'id': offre.id }) }}" target="_blank" class="btn-default btn1">Voir</a>
         {% else %}
             {% if is_granted('ROLE_CANDIDAT') %}
                 {% if offre.added %}
