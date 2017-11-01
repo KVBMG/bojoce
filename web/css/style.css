@@ -690,7 +690,7 @@ transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -webkit-trans
 
 .srollko{
     background: #fff none repeat scroll 0 0;
-    height: 555px;
+    height: 955px;
     overflow-x: auto;
 }
 
