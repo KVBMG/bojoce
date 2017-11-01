@@ -116,7 +116,8 @@ $(function () {
     }
     function performSearch() {
         last_page = false;
-        $("#offreList").children().remove().append("<div class='loader'></div>");
+        $('.loader').remove();
+        $("#offreList").children().remove();
         $("#offreList").append("<div class='loader'></div>");
         add_more = false;
         is_processing = false;
