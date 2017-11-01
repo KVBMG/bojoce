@@ -26,7 +26,7 @@ class CuViType extends AbstractType {
                 ->add('latitude', HiddenType::class)
                 ->add('longitude', HiddenType::class)
                 ->add('localisation', 'text', array('label' => 'Où vous trouvez?'))
-                ->add('telephone', 'text', array('label' => 'Contact'))
+                ->add('telephone', 'text', array('label' => 'Téléphone'))
                 ->add('experience', 'integer', array('attr' => array(
                         'min' => '1',
                         'max' => '50',
