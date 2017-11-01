@@ -90,13 +90,13 @@
                                                class="fb-share"><i class="fa fa-facebook"></i></a>
                                         </li>
                                         <li><a class="twitter popup" href="http://twitter.com/share"><i
-                                                        class="fa fa-twitter"></i></a></li>
+                                                    class="fa fa-twitter"></i></a></li>
                                         <li>
                                             <script src="//platform.linkedin.com/in.js"
-                                                    type="text/javascript"> lang: en_US</script>
+                                            type="text/javascript"> lang: en_US</script>
                                             <script type="IN/Share"
                                                     data-url="ecojob.fr/valfid/developpement/web/search/offre/{{ offre.id }}"
-                                                    data-counter="right"></script>
+                                            data-counter="right"></script>
                                         </li>
                                     </ul>
                                 </div>
@@ -125,32 +125,33 @@
                                 </div>
                             </div>
                         {% endfor %}
-                        <div class="cd-cart-container empty">
-                            <a href="#0" class="cd-cart-trigger">
-                                Cart
-                                <ul class="count"> <!-- cart items count -->
-                                    <li>0</li>
-                                    <li>0</li>
-                                </ul> <!-- .count -->
-                            </a>
 
-                            <div class="cd-cart">
-                                <div class="wrapper">
-                                    <header>
-                                        <h2>Offres sauveguardées</h2>
-                                        <span class="undo">Item removed. <a href="#0">Undo</a></span>
-                                    </header>
-
-                                    <div class="body">
-                                        <ul>
-                                            <!-- products added to the cart will be inserted here using JavaScript -->
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div> <!-- .cd-cart -->
-                        </div>
                     {% endif %}
                 </div>
+                <div class="cd-cart-container empty">
+                    <a href="#0" class="cd-cart-trigger">
+                        Cart
+                        <ul class="count"> <!-- cart items count -->
+                            <li>0</li>
+                            <li>0</li>
+                        </ul> <!-- .count -->
+                    </a>
+
+                    <div class="cd-cart">
+                        <div class="wrapper">
+                            <header>
+                                <h2>Offres sauveguardées</h2>
+                                <span class="undo">Item removed. <a href="#0">Undo</a></span>
+                            </header>
+
+                            <div class="body">
+                                <ul>
+                                    <!-- products added to the cart will be inserted here using JavaScript -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div> <!-- .cd-cart -->
+                </div>                
                 <div class="col-sm-3" id="details">
 
                 </div>
@@ -164,7 +165,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
+                            aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title">Alerte</h4>
                 </div>
                 <div class="modal-body">
