@@ -14,6 +14,7 @@ class OffreRepository extends \Doctrine\ORM\EntityRepository {
 
         $qb = $this->createQueryBuilder('o');
         $qb->where('o.valid = true')
+                ->andWhere("DATE_FORMAT(DATE_ADD(o.validAt,o.expireAt,'DAY'),'%Y-%m-%d') <= DATE_FORMAT(CURRENT_DATE(),'%Y-%m-%d')")
                 ->andWhere('o.suspendu = false')
                 ->andWhere('o.modificationValided = true')
                 ->orderBy('o.createdAt', 'DESC')
@@ -93,19 +94,22 @@ class OffreRepository extends \Doctrine\ORM\EntityRepository {
                 ->andWhere("o.suspendu = false");
         return $qb->getQuery()->getResult();
     }
+
     public function findROArray($recruteur_id, $offset) {
         $qb = $this->createQueryBuilder('o')
-                    ->where('o.recruteur = :recruteur_id')
-                    ->setParameter('recruteur_id' , $recruteur_id)
-                    ->setFirstResult($offset)
-                    ->setMaxResults(10);
+                ->where('o.recruteur = :recruteur_id')
+                ->setParameter('recruteur_id', $recruteur_id)
+                ->setFirstResult($offset)
+                ->setMaxResults(10);
         return $qb->getQuery()->getArrayResult();
     }
+
     public function findCustomOffre() {
         $qb = $this->createQueryBuilder('o')
-            ->select('o.id','o.titre','c.designation AS categorie_designation','o.validAt','o.createdAt','r.username AS recruteur_username','r.email AS recruteur_email')
-            ->join('o.recruteur','r')
-            ->join('o.categorie','c');
+                ->select('o.id', 'o.titre', 'c.designation AS categorie_designation', 'o.validAt', 'o.createdAt', 'r.username AS recruteur_username', 'r.email AS recruteur_email')
+                ->join('o.recruteur', 'r')
+                ->join('o.categorie', 'c');
         return $qb->getQuery()->getArrayResult();
     }
+
 }
