@@ -250,10 +250,15 @@ class AdminController extends Controller {
         $qb->select('COUNT(o)');
         $count_offres = $qb->getQuery()->getSingleScalarResult();
         $expired = count($em->getRepository('EcoJobRecruteurBundle:Offre')->getExpiredNow());
+        $modified = count($em->getRepository('EcoJobRecruteurBundle:Offre')->findByModificationValided(false));
+        $notvalided = count($em->getRepository('EcoJobRecruteurBundle:Offre')->findByValid(false));
         $this->get('session')->set('newUsers', $newUsers);
         $this->get('session')->set('users', $count_users);
         $this->get('session')->set('offres', $count_offres);
         $this->get('session')->set('expired', $expired);
+        $this->get('session')->set('modified', $modified);
+        $this->get('session')->set('notvalided', $notvalided);
+        
         return true;
     }
 
