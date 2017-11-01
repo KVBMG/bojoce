@@ -177,6 +177,7 @@ $(function () {
     function addMore() {
         if ($(this).scrollTop() + $(this).innerHeight() == $(this)[0].scrollHeight) {
             if (!(is_processing && last_page)) {
+                $('.loader').remove();
                 $("#offreList").off('scroll');
                 $("#offreList").append("<div class='loader'></div>").scrollTop($(this)[0].scrollHeight);
                 first = false
