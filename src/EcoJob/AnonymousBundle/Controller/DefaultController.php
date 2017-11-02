@@ -7,15 +7,26 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use EcoJob\RecruteurBundle\Entity\Offre;
 
-class DefaultController extends Controller {
+class DefaultController extends Controller
+{
 
-    public function mapAction() {
-        $em = $this->getDoctrine()->getManager();        
+    public function mapAction()
+    {
+        $em = $this->getDoctrine()->getManager();
         $results = $em->getRepository('EcoJobRecruteurBundle:Offre')->findBy(array('valid' => true, 'suspendu' => false, 'modificationValided' => true), array('createdAt' => 'DESC'), 10);
+        if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+            $mines = $this->getUser()->getPostuled();
+            for ($i = 0; $i < count($mines); $i++) {
+                if (($key = array_search($mines[$i], $results, TRUE)) !== FALSE) {
+                    $results[$key]->setAdded(true);
+                }
+            }
+        }
         return $this->render('EcoJobAnonymousBundle:Default:map.html.twig', array('offres' => $results));
     }
 
-    public function searchAjaxTemplatedAction(Request $request) {
+    public function searchAjaxTemplatedAction(Request $request)
+    {
         $keywords = $request->request->get('keywords');
         $contrat = $request->request->get('contrat');
         $experience = $request->request->get('experience');
@@ -40,7 +51,8 @@ class DefaultController extends Controller {
         return $response;
     }
 
-    public function searchAjaxAction(Request $request) {
+    public function searchAjaxAction(Request $request)
+    {
         $keywords = $request->request->get('keywords');
         $contrat = $request->request->get('contrat');
         $experience = $request->request->get('experience');
@@ -61,7 +73,8 @@ class DefaultController extends Controller {
         return new Response($res);
     }
 
-    public function searchAction(Request $request) {
+    public function searchAction(Request $request)
+    {
         $keywords = $request->request->get('keywords');
         $contrat = $request->request->get('contrat');
         $experience = $request->request->get('experience');
@@ -83,7 +96,8 @@ class DefaultController extends Controller {
         return $response;
     }
 
-    public function doSearchAction() {
+    public function doSearchAction()
+    {
         $em = $this->getDoctrine()->getManager();
         $results = $em->getRepository('EcoJobRecruteurBundle:Offre')->findBy(array('valid' => true, 'suspendu' => false, 'modificationValided' => true), array('createdAt' => 'DESC'), 10);
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
@@ -96,14 +110,16 @@ class DefaultController extends Controller {
             }
         }
         return $this->render('EcoJobAnonymousBundle:Default:search.html.twig', array(
-                    'offres' => $results, 'added' => $results));
+            'offres' => $results, 'added' => $results));
     }
 
-    public function showOffreAction(Offre $offre) {
+    public function showOffreAction(Offre $offre)
+    {
         return $this->render('EcoJobAnonymousBundle:Default:offre.html.twig', array('offre' => $offre));
     }
 
-    public function detailsOffreAction(Offre $offre) {
+    public function detailsOffreAction(Offre $offre)
+    {
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
 
             $mines = $this->getUser()->getPostuled();
@@ -121,7 +137,8 @@ class DefaultController extends Controller {
         return $response;
     }
 
-    public function getAllJsonAction() {
+    public function getAllJsonAction()
+    {
         $serializer = $this->container->get('jms_serializer');
         $em = $this->getDoctrine()->getManager();
         $offres = $em->getRepository('EcoJobRecruteurBundle:Offre')->findBy(array('valid' => true, 'suspendu' => false, 'modificationValided' => true), array('createdAt' => 'DESC'), 10);
@@ -129,14 +146,16 @@ class DefaultController extends Controller {
         return new Response($res);
     }
 
-    private function unsetValue(array $array, $value, $strict = TRUE) {
+    private function unsetValue(array $array, $value, $strict = TRUE)
+    {
         if (($key = array_search($value, $array, $strict)) !== FALSE) {
             $results[$key]->setAdded(true);
         }
         return $array;
     }
 
-    public function integraliteOffreAction(Offre $offre) {
+    public function integraliteOffreAction(Offre $offre)
+    {
         $em = $this->getDoctrine()->getManager();
         $securityContext = $this->container->get('security.authorization_checker');
         $postuled = false;
@@ -148,8 +167,8 @@ class DefaultController extends Controller {
             $postuled = $em->getRepository('EcoJobCandidatBundle:Candidature')->isPostuled($offre->getId(), $user->getId());
         }
         return $this->render('EcoJobAnonymousBundle:Default:integralite_offre.html.twig', array('offre' => $offre,
-                    'postuled' => $postuled,
-                    'saved' => $saved
+            'postuled' => $postuled,
+            'saved' => $saved
         ));
     }
 

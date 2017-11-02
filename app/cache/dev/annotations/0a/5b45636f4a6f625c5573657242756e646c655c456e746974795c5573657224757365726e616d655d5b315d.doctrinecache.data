@@ -1,2 +1,0 @@
-0
-a:1:{i:0;O:45:"Symfony\Component\Validator\Constraints\Regex":6:{s:7:"message";s:55:"Cette valeur ne doit pas contenir des métacaractères.";s:7:"pattern";s:17:"/^[a-zA-Z0-9 ]+$/";s:11:"htmlPattern";N;s:5:"match";b:1;s:7:"payload";N;s:6:"groups";a:1:{i:0;s:7:"Default";}}}
