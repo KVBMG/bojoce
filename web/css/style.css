@@ -688,7 +688,13 @@ transition: all 0.3s ease-out; -moz-transition: all 0.3s ease-out; -webkit-trans
     height: 66px;
 }
 
-.srollko{
+.sroll_search_free{
+    background: #fff none repeat scroll 0 0;
+    height: 555px;
+    overflow-x: auto;
+}
+
+.scroll_map{
     background: #fff none repeat scroll 0 0;
     height: 955px;
     overflow-x: auto;
