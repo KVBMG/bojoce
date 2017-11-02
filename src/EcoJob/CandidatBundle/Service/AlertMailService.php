@@ -98,6 +98,7 @@ class AlertMailService {
             ->render('EcoJobCandidatBundle:AlertMail/Mail:alertCandidature.html.twig', array(
             'recruteur' => $mail_content['recruteur_username'],
             'offre' => $mail_content['titre_offre'],
+            'offreId' => $mail_content['id_offre'],
             'candidat' => $mail_content['candidat_username']
         ));
         return $body;

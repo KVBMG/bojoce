@@ -126,7 +126,7 @@ class Offre
      /**
      * @var int
      *
-     * @ORM\Column(type="integer",nullable=true,options={"default": 3})
+     * @ORM\Column(type="integer",nullable=true,options={"default": 90})
      */
     private $expireAt;
      /**
@@ -142,6 +142,14 @@ class Offre
      * @var \DateTime
      */
     private $validAt;
+    
+    
+      /**
+     * @ORM\Column(type="datetime",nullable=true)
+     *
+     * @var \DateTime
+     */
+    private $suspenduAt;
     
     public function __construct()
     {
@@ -591,5 +599,29 @@ class Offre
     public function getModificationValided()
     {
         return $this->modificationValided;
+    }
+
+    /**
+     * Set suspenduAt
+     *
+     * @param \DateTime $suspenduAt
+     *
+     * @return Offre
+     */
+    public function setSuspenduAt($suspenduAt)
+    {
+        $this->suspenduAt = $suspenduAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get suspenduAt
+     *
+     * @return \DateTime
+     */
+    public function getSuspenduAt()
+    {
+        return $this->suspenduAt;
     }
 }

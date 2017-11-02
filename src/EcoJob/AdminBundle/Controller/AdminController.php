@@ -56,6 +56,7 @@ class AdminController extends Controller {
         $this->getNumbers();
         $em = $this->getDoctrine()->getManager();
         $offre->setSuspendu(true);
+        $offre->setSuspenduAt(new \DateTime());
         $em->flush();
         return $this->redirectToRoute('eco_job_admin_recruteur_offre', array('id' => $offre->getId()));
     }
@@ -71,6 +72,7 @@ class AdminController extends Controller {
         $this->getNumbers();
         $em = $this->getDoctrine()->getManager();
         $offre->setSuspendu(false);
+        $offre->setSuspenduAt(null);
         $em->flush();
         return $this->redirectToRoute('eco_job_admin_recruteur_offre', array('id' => $offre->getId()));
     }
@@ -172,8 +174,17 @@ class AdminController extends Controller {
     public function getOffreNewsAction() {
         $this->getNumbers();
         $em = $this->getDoctrine()->getEntityManager();
-        $offres = $em->getRepository('EcoJobRecruteurBundle:Offre')->findByValid(false);
+        $offres = $em->getRepository('EcoJobRecruteurBundle:Offre')->getNonValideOffers();
         return $this->render('EcoJobAdminBundle:Admin:offres.html.twig', array('offres' => $offres));
+    }
+    
+    public function getOffreSuspenduAction(){
+        $this->getNumbers();
+        $em = $this->getDoctrine()->getManager();
+        $offres = $em->getRepository('EcoJobRecruteurBundle:Offre')->getSuspendedOffres();
+        return $this->render('EcoJobAdminBundle:Admin:suspendu.html.twig', array(
+                    'offres' => $offres
+        ));
     }
 
     public function getOffreEditedAction() {
@@ -249,6 +260,7 @@ class AdminController extends Controller {
         $qb = $repo->createQueryBuilder('o');
         $qb->select('COUNT(o)');
         $count_offres = $qb->getQuery()->getSingleScalarResult();
+        $suspendu = count($em->getRepository('EcoJobRecruteurBundle:Offre')->getSuspendedOffres());
         $expired = count($em->getRepository('EcoJobRecruteurBundle:Offre')->getExpiredNow());
         $modified = count($em->getRepository('EcoJobRecruteurBundle:Offre')->findByModificationValided(false));
         $notvalided = count($em->getRepository('EcoJobRecruteurBundle:Offre')->findByValid(false));
@@ -258,6 +270,7 @@ class AdminController extends Controller {
         $this->get('session')->set('expired', $expired);
         $this->get('session')->set('modified', $modified);
         $this->get('session')->set('notvalided', $notvalided);
+        $this->get('session')->set('suspendu', $suspendu);
         
         return true;
     }

@@ -89,7 +89,7 @@ a {
                                         Les voici:
                                      {% for offre in offres %}
                                         <ul>
-                                            <li><a href="{{ path('eco_job_candidat_offre', {'id': offre.id}) }}">{{ loop.index }} -  {{ offre.titre }} ({{ offre.contrat.libelle }})</a></li>
+                                            <li><a href="{{ url('eco_job_candidat_offre', {'id': offre.id}) }}">{{ loop.index }} -  {{ offre.titre }} ({{ offre.contrat.libelle }})</a></li>
                                         </ul>
                                        {% endfor %}
                                     </p>

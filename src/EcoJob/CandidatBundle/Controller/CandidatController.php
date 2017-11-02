@@ -287,6 +287,7 @@ class CandidatController extends Controller {
         $recruteur = $candidature->getOffre()->getRecruteur();
         $mail_content = array();
         $mail_content['titre_offre'] = $candidature->getOffre()->getTitre();
+        $mail_content['id_offre'] = $candidature->getOffre()->getId();
         $mail_content['recruteur_username'] = $recruteur->getUsername();
         $mail_content['candidat_username'] = $candidature->getCandidat()->getUsername();
 

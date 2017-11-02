@@ -111,5 +111,19 @@ class OffreRepository extends \Doctrine\ORM\EntityRepository {
                 ->join('o.categorie', 'c');
         return $qb->getQuery()->getArrayResult();
     }
+    
+    public function getNonValideOffers(){
+        $qb = $qb = $this->createQueryBuilder('o')
+                ->where("o.valid = false")
+                ->orderBy('o.createdAt', 'DESC');
+        return $qb->getQuery()->getResult();
+    }
+    
+    public function getSuspendedOffres(){
+        $qb = $qb = $this->createQueryBuilder('o')
+                ->where("o.suspendu = true")
+                ->orderBy('o.suspenduAt', 'DESC');
+        return $qb->getQuery()->getResult();
+    }
 
 }

@@ -26,6 +26,7 @@ class SuspendreOffreService {
         $offres = $this->em->getRepository('EcoJobRecruteurBundle:Offre')->getExpiredNow();
         foreach($offres as $offre){
             $offre->setSuspendu(true);
+            $offre->setSuspenduAt(new \DateTime());
             $this->em->flush();
         }
     }

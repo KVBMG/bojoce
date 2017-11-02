@@ -78,12 +78,11 @@
                                 <a href="#details" class="btn-default btn save">
                                     <span class="glyphicon glyphicon-save"></span>
                                 </a>
-                                <a class="btn btn-default" data-toggle="collapse" href="#collapseExample{{ offre.id }}"
-                                   aria-expanded="false" aria-controls="collapseExample">
+                                <a class="btn btn-default" data-toggle="collapse" href="#collapseExample{{offre.id}}" aria-expanded="false" aria-controls="collapseExample">
                                     <span class="glyphicon glyphicon-share"></span>
                                 </a>
                             </div>
-                            <div class="collapse" id="collapseExample{{ offre.id }}">
+                            <div class="collapse" id="collapseExample{{offre.id}}">
                                 <div class="card card-block">
                                     <ul class="social clearfix">
                                         <li><a href="{{ path('eco_job_anonymous_offre_integralite',{id: offre.id}) }}"
@@ -151,7 +150,7 @@
                             </div>
                         </div>
                     </div> <!-- .cd-cart -->
-                </div>                
+                </div>
                 <div class="col-sm-3" id="details">
 
                 </div>
@@ -189,4 +188,6 @@
     <script type="text/javascript" src="{{ asset('js/search_social_network.js') }}"></script>
     <script src="{{ asset('js/jquery.blockUI.js') }}"></script>
     <script src="{{ asset('js/addToCart.js') }}"></script>
+    <script src="{{ asset('js/postuler_formulaire.js') }}"></script>
+
 {% endblock %}

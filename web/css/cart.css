@@ -3,7 +3,7 @@
 }
 
 .cd-add-to-cart:hover {
-    background: #42a2e1;
+    background: #01a2a6;
 }
 
 .cd-add-to-cart:active {
@@ -285,7 +285,7 @@ Main Components
 }
 
 .cd-cart .undo a:hover {
-    color: #2c97de;
+    color: #01a2a6;
 }
 
 .cd-cart .undo.visible {
@@ -298,7 +298,7 @@ Main Components
     height: 72px;
     line-height: 72px;
     margin-right: 72px;
-    background: #2c97de;
+    background: #01a2a6;
     color: rgba(255, 255, 255, 0);
     text-align: center;
     font-size: 1.8rem;
@@ -308,7 +308,7 @@ Main Components
 }
 
 .cd-cart .checkout:hover {
-    background: #399ee0;
+    background: #01a2a6;
 }
 
 .cd-cart .checkout em {
@@ -454,7 +454,7 @@ Main Components
 }
 
 .cd-cart h3 a:hover {
-    color: #2c97de;
+    color: #01a2a6;
 }
 
 .cd-cart .price {
