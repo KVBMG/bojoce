@@ -120,6 +120,8 @@ class DefaultController extends Controller
 
     public function detailsOffreAction(Offre $offre)
     {
+        $em = $this->getDoctrine()->getManager();
+        $postuled = false;
         if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
 
             $mines = $this->getUser()->getPostuled();
@@ -129,8 +131,10 @@ class DefaultController extends Controller
                     break;
                 }
             }
+            $user = $this->getUser();
+            $postuled = $em->getRepository('EcoJobCandidatBundle:Candidature')->isPostuled($offre->getId(), $user->getId());
         }
-        $html = $this->renderView('EcoJobAnonymousBundle:Default:details.html.twig', array('offre' => $offre));
+        $html = $this->renderView('EcoJobAnonymousBundle:Default:details.html.twig', array('offre' => $offre, 'postuled' => $postuled));
         $serializer = $this->container->get('jms_serializer');
         $response = new Response(json_encode(array("html" => $html, 'id' => $offre->getId(), 'titre' => $offre->getTitre(), 'lat' => $offre->getLatitude(), 'long' => $offre->getLongitude())));
         $response->headers->set('Content-Type', 'application/json');

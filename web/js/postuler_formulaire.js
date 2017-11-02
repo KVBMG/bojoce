@@ -1,6 +1,5 @@
-$(function () {
-
-    $('#candidatureForm').submit(function (event) {
+$(function(){
+    $(document).on('submit','#candidatureForm', function (event) {
         event.preventDefault();
         var form_data = $(this).serialize();
         console.log(form_data);
