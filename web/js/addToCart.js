@@ -15,7 +15,7 @@ jQuery(document).ready(function ($) {
             var undoTimeoutId;
 
             //add product to cart
-            addToCartBtn.on('click', function (event) {
+            $(document).on('click','.cd-add-to-cart', function (event) {
                 event.preventDefault();
                 addToCart($(this));
                 animate($(this));
@@ -82,7 +82,7 @@ jQuery(document).ready(function ($) {
             //update cart product list
             addProduct(cartIsEmpty, _offreId).complete(function () {
                 cartWrapper.removeClass('empty');
-                trigger.replaceWith('<a href="#" class="btn-default btn-warning">Déja sauvegardée</a>');
+                //trigger.replaceWith('<a href="#" class="btn-default btn-warning">Déja sauvegardée</a>');
                 toggleCart(true);
             });
 
@@ -111,11 +111,11 @@ jQuery(document).ready(function ($) {
                         'height': 75
                     }, 3000, 'easeInOutExpo');
 
-                setTimeout(function () {
-                    cartTrigger.effect("shake", {
-                        times: 2
-                    }, 200);
-                }, 1500);
+                // setTimeout(function () {
+                //     cartTrigger.effect("shake", {
+                //         times: 2
+                //     }, 200);
+                // }, 1500);
 
                 imgclone.animate({
                     'width': 0,
@@ -134,7 +134,9 @@ jQuery(document).ready(function ($) {
                 method: 'GET'
             }).success(function (data) {
                 //update number of items
+                $('.cd-add-to-cart[data-offre-id='+ id +']').replaceWith('<a href="#" class="btn-default btn-warning">Déja sauvegardée</a>');
                 updateCartCount(cartIsEmpty, data.saved);
+
             }).error(function (err) {
                 console.warn(err);
             });

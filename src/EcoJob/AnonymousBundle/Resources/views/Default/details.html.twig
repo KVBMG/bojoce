@@ -13,7 +13,10 @@
                 {% if offre.added %}
                     <a href="#" class="btn-default btn-warning">Déja sauvegardée</a>
                 {% else %}
-                    <a href="{{ path('eco_job_candidat_offre_save',{'id': offre.id})}}" class="btn-default btn1">Save</a>
+                    {#<a href="{{ path('eco_job_candidat_offre_save',{'id': offre.id})}}" class="btn-default btn1">Save</a>#}
+                    <a class="cd-add-to-cart btn btn-default" data-offre-id="{{ offre.id }}">
+                        Save
+                    </a>
                 {% endif %}
             {% endif %}   
             <a href="{{ path('eco_job_anonymous_offre_integralite',{ 'id': offre.id }) }}" class="btn-default btn1">Voir</a>
