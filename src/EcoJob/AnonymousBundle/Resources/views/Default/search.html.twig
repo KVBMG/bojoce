@@ -72,6 +72,7 @@
                         {% for offre in offres %}
                             <div class="news1 offre" offreId="{{ offre.id }}">
                                 <div class="txt2"><a href="#details">{{ offre.titre }}</a></div>
+                                <div class="txt1">Ajouté le {{ offre.createdAt |date('Y-m-d') }} </div>                                
                                 <div class="txt3">{{ offre.localisation }}</div>
                             </div>
                             <div class="btn-group">
@@ -105,7 +106,7 @@
                         {% for offre in offres %}
                             <div class="news1 offre" offreId="{{ offre.id }}">
                                 <div class="txt2"><a href="#details">{{ offre.titre }}</a></div>
-                                <div class="txt1">{{ offre.createdAt |date('Y-m-d') }} </div>
+                                <div class="txt1">Ajouté le {{ offre.createdAt |date('Y-m-d') }} </div>
                                 <div class="txt3">{{ offre.contenu }}</div>
                                 <div class="btn-group">
                                     {% if offre.added %}

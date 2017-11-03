@@ -14,7 +14,7 @@ class OffreRepository extends \Doctrine\ORM\EntityRepository {
 
         $qb = $this->createQueryBuilder('o');
         $qb->where('o.valid = true')
-                ->andWhere("DATE_FORMAT(DATE_ADD(o.validAt,o.expireAt,'DAY'),'%Y-%m-%d') <= DATE_FORMAT(CURRENT_DATE(),'%Y-%m-%d')")
+                ->andWhere("DATE_FORMAT(DATE_ADD(o.validAt,o.expireAt,'DAY'),'%Y-%m-%d') >= DATE_FORMAT(CURRENT_DATE(),'%Y-%m-%d')")
                 ->andWhere('o.suspendu = false')
                 ->andWhere('o.modificationValided = true')
                 ->orderBy('o.createdAt', 'DESC')
