@@ -108,21 +108,25 @@
                                 <div class="txt2"><a href="#details">{{ offre.titre }}</a></div>
                                 <div class="txt1">Ajouté le {{ offre.createdAt |date('Y-m-d') }} </div>
                                 <div class="txt3">{{ offre.contenu }}</div>
-                                <div class="btn-group">
-                                    {% if offre.added %}
-                                        <a href="#" class="btn-default btn-warning">Déja sauvegardée</a>
-                                    {% else %}
-                                        <a class="cd-add-to-cart btn btn-default" data-offre-id="{{ offre.id }}">
-                                            <span class="glyphicon glyphicon-save"></span>
-                                        </a>
-                                    {% endif %}
+                    {% if is_granted('ROLE_CANDIDAT') %}
+                        <div class="btn-group">
+                            {% if offre.added %}
+                                <a href="#" class="btn-default btn-warning">Déja sauvegardée</a>
+                            {% else %}
+                                <a class="cd-add-to-cart btn btn-default" data-offre-id="{{ offre.id }}">
+                                    <span class="glyphicon glyphicon-save"></span>
+                                </a>
+                            {% endif %}
 
-                                    <a class="btn btn-default" data-toggle="collapse"
-                                       href="#collapseExample{{ offre.id }}" aria-expanded="false"
-                                       aria-controls="collapseExample">
-                                        <span class="glyphicon glyphicon-share"></span>
-                                    </a>
-                                </div>
+                            <a class="btn btn-default" data-toggle="collapse"
+                               href="#collapseExample{{ offre.id }}" aria-expanded="false"
+                               aria-controls="collapseExample">
+                                <span class="glyphicon glyphicon-share"></span>
+                            </a>
+                        </div>
+                    {% else %}    
+                        <a href="{{ path('eco_job_anonymous_offre_integralite',{ 'id': offre.id }) }}" target="_blank" class="btn-default btn1">Voir</a>                
+                    {% endif %} 
                             </div>
                         {% endfor %}
 

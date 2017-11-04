@@ -84,12 +84,18 @@
                                         <span class="glyphicon glyphicon-save"></span>
                                     </a>
                                 {% else %}
-                                    {% if offre.added %}
-                                        <a href="#" class="btn-default btn-warning">Déja sauvegardée</a>
+                                    {% if is_granted('ROLE_CANDIDAT') %}
+
+                                        {% if offre.added %}
+                                            <a href="#" class="btn-default btn-warning">Déja sauvegardée</a>
+                                        {% else %}
+                                            <a class="cd-add-to-cart btn btn-default" data-offre-id="{{ offre.id }}">
+                                                <span class="glyphicon glyphicon-save"></span>
+                                            </a>
+                                        {% endif %}
                                     {% else %}
-                                        <a class="cd-add-to-cart btn btn-default" data-offre-id="{{ offre.id }}">
-                                            <span class="glyphicon glyphicon-save"></span>
-                                        </a>
+                                        <a href="{{ path('eco_job_anonymous_offre_integralite',{ 'id': offre.id }) }}" target="_blank" class="btn-default btn1">Voir</a>                
+
                                     {% endif %}
                                 {% endif %}
 
