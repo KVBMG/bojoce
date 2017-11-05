@@ -124,6 +124,24 @@
                                 <span class="glyphicon glyphicon-share"></span>
                             </a>
                         </div>
+                            <div class="collapse" id="collapseExample{{offre.id}}">
+                                <div class="card card-block">
+                                    <ul class="social clearfix">
+                                        <li><a href="{{ path('eco_job_anonymous_offre_integralite',{id: offre.id}) }}"
+                                               class="fb-share"><i class="fa fa-facebook"></i></a>
+                                        </li>
+                                        <li><a class="twitter popup" href="http://twitter.com/share"><i
+                                                    class="fa fa-twitter"></i></a></li>
+                                        <li>
+                                            <script src="//platform.linkedin.com/in.js"
+                                            type="text/javascript"> lang: en_US</script>
+                                            <script type="IN/Share"
+                                                    data-url="ecojob.fr/valfid/developpement/web/search/offre/{{ offre.id }}"
+                                            data-counter="right"></script>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>                               
                     {% else %}    
                         <a href="{{ path('eco_job_anonymous_offre_integralite',{ 'id': offre.id }) }}" target="_blank" class="btn-default btn1">Voir</a>                
                     {% endif %} 
