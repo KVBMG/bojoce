@@ -141,7 +141,8 @@ class CandidatController extends Controller {
                     );
                 }
             }
-            $form = $this->createForm(new CuViType, $cv);
+            $param = $em->getRepository('EcoJobCandidatBundle:ParamCandidat')->findBy(array('candidat' => $this->getUser()->getId()));
+            $form = $this->createForm(new CuViType($param), $cv);
             return $this->render('EcoJobCandidatBundle:Candidat:edit.html.twig', array(
                         'form' => $form->createView(),
             ));
@@ -333,11 +334,10 @@ class CandidatController extends Controller {
     }
 
     public function stopAction(CuVi $cv, Request $request) {
-        if($cv->getShowable()){
-        $cv->setShowable(false);
-        }
-        else{
-        $cv->setShowable(true);           
+        if ($cv->getShowable()) {
+            $cv->setShowable(false);
+        } else {
+            $cv->setShowable(true);
         }
         $em = $this->getDoctrine()->getManager();
         $em->persist($cv);
