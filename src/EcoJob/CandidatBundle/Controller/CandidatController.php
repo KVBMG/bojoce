@@ -141,6 +141,7 @@ class CandidatController extends Controller {
                     );
                 }
             }
+            $em = $this->getDoctrine()->getManager();
             $param = $em->getRepository('EcoJobCandidatBundle:ParamCandidat')->findBy(array('candidat' => $this->getUser()->getId()));
             $form = $this->createForm(new CuViType($param), $cv);
             return $this->render('EcoJobCandidatBundle:Candidat:edit.html.twig', array(
