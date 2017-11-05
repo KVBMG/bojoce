@@ -73,7 +73,7 @@ class AdminController extends Controller {
         $em = $this->getDoctrine()->getManager();
         $offre->setSuspendu(false);
         $offre->setSuspenduAt(null);
-        $offre->setCreatedAt(new \DateTime());
+        $offre->setValidAt(new \DateTime());
         $em->flush();
         return $this->redirectToRoute('eco_job_admin_recruteur_offre', array('id' => $offre->getId()));
     }
