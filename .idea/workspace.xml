@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="43258f25-77a5-4b12-8fc7-bd517d311705" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/web/js/postuler_formulaire.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EcoJob/AnonymousBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/src/EcoJob/AnonymousBundle/Controller/DefaultController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EcoJob/AnonymousBundle/Resources/views/Default/details.html.twig" afterPath="$PROJECT_DIR$/src/EcoJob/AnonymousBundle/Resources/views/Default/details.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EcoJob/AnonymousBundle/Resources/views/Default/integralite_offre.html.twig" afterPath="$PROJECT_DIR$/src/EcoJob/AnonymousBundle/Resources/views/Default/integralite_offre.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EcoJob/AnonymousBundle/Resources/views/Default/map.html.twig" afterPath="$PROJECT_DIR$/src/EcoJob/AnonymousBundle/Resources/views/Default/map.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EcoJob/AnonymousBundle/Resources/views/Default/search.html.twig" afterPath="$PROJECT_DIR$/src/EcoJob/AnonymousBundle/Resources/views/Default/search.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EcoJob/CandidatBundle/Controller/CandidatController.php" afterPath="$PROJECT_DIR$/src/EcoJob/CandidatBundle/Controller/CandidatController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EcoJob/CandidatBundle/Resources/views/AlertMail/Mail/alertCandidature.html.twig" afterPath="$PROJECT_DIR$/src/EcoJob/CandidatBundle/Resources/views/AlertMail/Mail/alertCandidature.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EcoJob/CandidatBundle/Service/AlertMailService.php" afterPath="$PROJECT_DIR$/src/EcoJob/CandidatBundle/Service/AlertMailService.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/integralite_offre.js" afterPath="$PROJECT_DIR$/web/js/integralite_offre.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Controller/RecruteurController.php" afterPath="$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Controller/RecruteurController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Resources/config/routing.yml" afterPath="$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Resources/config/routing.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Resources/views/Recruteur/candidatures.html.twig" afterPath="$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Resources/views/Recruteur/candidatures.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Resources/views/Recruteur/xhrCandidatureTemplate.html.twig" afterPath="$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Resources/views/Recruteur/xhrCandidatureTemplate.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/candidature.js" afterPath="$PROJECT_DIR$/web/js/candidature.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,51 +27,45 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AlertMailService.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/EcoJob/CandidatBundle/Service/AlertMailService.php">
+      <file leaf-file-name="candidatures.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Resources/views/Recruteur/candidatures.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="100" column="48" lean-forward="false" selection-start-line="100" selection-start-column="40" selection-end-line="100" selection-end-column="48" />
+            <state relative-caret-position="306">
+              <caret line="50" column="67" lean-forward="false" selection-start-line="50" selection-start-column="67" selection-end-line="50" selection-end-column="67" />
+              <folding>
+                <element signature="e#1608#1615#1#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="xhrCandidatureTemplate.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Resources/views/Recruteur/xhrCandidatureTemplate.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="48" lean-forward="false" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+              <folding>
+                <element signature="e#465#472#1#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="candidature.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/web/js/candidature.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="391">
+              <caret line="23" column="76" lean-forward="false" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="76" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="alertCandidature.html.twig" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/EcoJob/CandidatBundle/Resources/views/AlertMail/Mail/alertCandidature.html.twig">
+      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Resources/config/routing.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="95" column="205" lean-forward="false" selection-start-line="95" selection-start-column="205" selection-end-line="95" selection-end-column="205" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CandidatController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/EcoJob/CandidatBundle/Controller/CandidatController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="289" column="69" lean-forward="false" selection-start-line="289" selection-start-column="69" selection-end-line="289" selection-end-column="69" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="routing.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/EcoJob/AnonymousBundle/Resources/config/routing.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="48" column="35" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="35" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/web/css/style.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="245">
-              <caret line="467" column="0" lean-forward="false" selection-start-line="463" selection-start-column="0" selection-end-line="467" selection-end-column="0" />
+            <state relative-caret-position="143">
+              <caret line="36" column="81" lean-forward="false" selection-start-line="36" selection-start-column="81" selection-end-line="36" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -94,16 +82,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>cart-open</find>
-      <find>toggle</find>
-      <find>complete</find>
-      <find>top</find>
-      <find>span</find>
-      <find>{id}/details</find>
-      <find>save</find>
-      <find>success</find>
-      <find>replace</find>
-      <find>setAdded</find>
       <find>$mines</find>
       <find>offre/search</find>
       <find>animate</find>
@@ -124,6 +102,16 @@
       <find>alertCa</find>
       <find>mail_content</find>
       <find>generateContentBeta</find>
+      <find>a po</find>
+      <find>append</find>
+      <find>candidature-item</find>
+      <find>.candidatures</find>
+      <find>.candidature-itme</find>
+      <find>delete</find>
+      <find>render</find>
+      <find>eco_job_recruteur_candidatures_offre_list</find>
+      <find>findO</find>
+      <find>recruteurOffreList</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -150,6 +138,11 @@
         <option value="$PROJECT_DIR$/src/EcoJob/CandidatBundle/Service/AlertMailService.php" />
         <option value="$PROJECT_DIR$/src/EcoJob/CandidatBundle/Controller/CandidatController.php" />
         <option value="$PROJECT_DIR$/src/EcoJob/CandidatBundle/Resources/views/AlertMail/Mail/alertCandidature.html.twig" />
+        <option value="$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Resources/views/Recruteur/xhrCandidatureTemplate.html.twig" />
+        <option value="$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Controller/RecruteurController.php" />
+        <option value="$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Resources/views/Recruteur/candidatures.html.twig" />
+        <option value="$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Resources/config/routing.yml" />
+        <option value="$PROJECT_DIR$/web/js/candidature.js" />
       </list>
     </option>
   </component>
@@ -243,7 +236,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="CandidatBundle" />
+              <option name="myItemId" value="RecruteurBundle" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -265,15 +258,11 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="CandidatBundle" />
+              <option name="myItemId" value="RecruteurBundle" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -295,90 +284,18 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="CandidatBundle" />
+              <option name="myItemId" value="RecruteurBundle" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AlertMail" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bojoce" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bojoce" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EcoJob" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CandidatBundle" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AlertMail" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Mail" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bojoce" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="bojoce" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="EcoJob" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CandidatBundle" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Resources" />
+              <option name="myItemId" value="Repository" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -492,17 +409,18 @@
       <workItem from="1509467736861" duration="10508000" />
       <workItem from="1509529986377" duration="630000" />
       <workItem from="1509591954464" duration="16001000" />
+      <workItem from="1509950857549" duration="5648000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="68975000" />
+    <option name="totallyTimeSpent" value="74623000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27231467" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27609682" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28968903" sideWeight="0.5030257" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -562,59 +480,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/EcoJob/AnonymousBundle/Resources/views/Default/map.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1509608663110" expanded="true" signature="8661:8764" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EcoJob/AnonymousBundle/Resources/views/Default/search.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1989">
-          <caret line="117" column="47" lean-forward="false" selection-start-line="111" selection-start-column="36" selection-end-line="117" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EcoJob/AnonymousBundle/Resources/views/Default/integralite_offre.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="612">
-          <caret line="36" column="54" lean-forward="false" selection-start-line="36" selection-start-column="40" selection-end-line="36" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/addToCart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1326">
-          <caret line="78" column="24" lean-forward="false" selection-start-line="78" selection-start-column="24" selection-end-line="78" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EcoJob/CandidatBundle/Controller/CandidatController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2771">
-          <caret line="163" column="5" lean-forward="false" selection-start-line="163" selection-start-column="5" selection-end-line="163" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EcoJob/AnonymousBundle/Resources/views/layout.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="35" lean-forward="false" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="0" lean-forward="false" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/EcoJob/AnonymousBundle/Resources/config/routing.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -661,7 +526,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2142">
           <caret line="126" column="65" lean-forward="true" selection-start-line="126" selection-start-column="65" selection-end-line="126" selection-end-column="65" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -676,7 +540,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1037">
           <caret line="61" column="53" lean-forward="false" selection-start-line="61" selection-start-column="53" selection-end-line="61" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -785,13 +648,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/search_social_network">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/search_social_network" />
     <entry file="jar://$APPLICATION_HOME_DIR$/lib/phpstorm.jar!/resources/html5-schema/html5/web-forms.rnc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
@@ -803,15 +660,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="34" lean-forward="false" selection-start-line="0" selection-start-column="34" selection-end-line="0" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/candidature.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -819,7 +667,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="34" column="3" lean-forward="false" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -827,9 +674,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="190" column="71" lean-forward="false" selection-start-line="190" selection-start-column="71" selection-end-line="190" selection-end-column="71" />
-          <folding>
-            <marker date="1509608663110" expanded="true" signature="8661:8764" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -837,7 +681,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="362">
           <caret line="135" column="9" lean-forward="false" selection-start-line="135" selection-start-column="9" selection-end-line="135" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -845,7 +688,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="177">
           <caret line="49" column="73" lean-forward="false" selection-start-line="49" selection-start-column="69" selection-end-line="49" selection-end-column="73" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -853,7 +695,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="382">
           <caret line="190" column="49" lean-forward="false" selection-start-line="190" selection-start-column="49" selection-end-line="190" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -869,7 +710,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
           <caret line="44" column="31" lean-forward="false" selection-start-line="40" selection-start-column="20" selection-end-line="44" selection-end-column="31" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -877,7 +717,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="4" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="34" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -885,13 +724,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="430">
           <caret line="59" column="0" lean-forward="false" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
+        <state relative-caret-position="7939">
           <caret line="467" column="0" lean-forward="false" selection-start-line="463" selection-start-column="0" selection-end-line="467" selection-end-column="0" />
           <folding />
         </state>
@@ -901,13 +739,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="19" lean-forward="false" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/EcoJob/AnonymousBundle/Resources/config/routing.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
+        <state relative-caret-position="816">
           <caret line="48" column="35" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="35" />
           <folding />
         </state>
@@ -921,9 +758,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/EcoJob/CandidatBundle/Resources/views/AlertMail/Mail/alertCandidature.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="95" column="16" lean-forward="false" selection-start-line="95" selection-start-column="16" selection-end-line="95" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/EcoJob/CandidatBundle/Service/AlertMailService.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
+        <state relative-caret-position="0">
           <caret line="100" column="48" lean-forward="false" selection-start-line="100" selection-start-column="40" selection-end-line="100" selection-end-column="48" />
           <folding />
         </state>
@@ -931,16 +776,78 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/EcoJob/CandidatBundle/Controller/CandidatController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="289" column="69" lean-forward="false" selection-start-line="289" selection-start-column="69" selection-end-line="289" selection-end-column="69" />
+        <state relative-caret-position="17">
+          <caret line="289" column="32" lean-forward="false" selection-start-line="289" selection-start-column="32" selection-end-line="289" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/EcoJob/CandidatBundle/Resources/views/AlertMail/Mail/alertCandidature.html.twig">
+    <entry file="file://$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Resources/views/Recruteur/cvresult.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="95" column="205" lean-forward="false" selection-start-line="95" selection-start-column="205" selection-end-line="95" selection-end-column="205" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Resources/views/Recruteur/candidatures.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="50" column="67" lean-forward="false" selection-start-line="50" selection-start-column="67" selection-end-line="50" selection-end-column="67" />
+          <folding>
+            <element signature="e#1608#1615#1#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Resources/views/Recruteur/xhrCandidatureTemplate.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="48" lean-forward="false" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+          <folding>
+            <element signature="e#465#472#1#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/candidature.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="76" lean-forward="false" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="76" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Repository/OffreRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="98" column="44" lean-forward="false" selection-start-line="98" selection-start-column="44" selection-end-line="98" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Controller/RecruteurController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="177">
+          <caret line="123" column="38" lean-forward="false" selection-start-line="123" selection-start-column="20" selection-end-line="123" selection-end-column="38" />
+          <folding>
+            <element signature="e#53#98#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EcoJob/RecruteurBundle/Resources/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="36" column="81" lean-forward="false" selection-start-line="36" selection-start-column="81" selection-end-line="36" selection-end-column="81" />
           <folding />
         </state>
       </provider>

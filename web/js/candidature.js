@@ -118,6 +118,8 @@ $(function(){
 
     $(document).on('click','a.candidature-item',function(event){
         event.preventDefault();
+        if(event.target !== this)
+            return;
         var _id = $(this).attr('data-candidature-item-id');
         var _url = Routing.generate('eco_job_recruteur_candidature_detail',{ id : _id});
 
@@ -144,5 +146,34 @@ $(function(){
                 $.unblockUI();
             }
         });
+    });
+    var _cdId = null;
+    var _ref = null;
+    $('#modalDelete').on('show.bs.modal', function(e){
+        var elem = $(e.relatedTarget);
+        _ref = $(e.relatedTarget);
+        _cdId = elem.data('candidature-id');
+    });
+
+    $('.btn-danger.d-c').on('click',function(e){
+       $.ajax({
+           'url' : Routing.generate('eco_job_recruteur_candidature_delete',{id : _cdId }),
+           'method' : 'GET',
+           beforeSend : function () {
+               $.blockUI({
+                   message: '<p class="loader"></p>',
+                   css: {border: 'none', backgroundColor: 'transparent', width: '66px', top: ($(window).height() - 100) / 2 + 'px', left: ($(window).width() - 100) / 2 + 'px', }
+               });
+           }
+       }).success(function(data){
+           $('#modalDelete').modal('hide');
+           _ref.parent().hide();
+       }).error(function(err){
+            console.warn(err);
+       }).complete(function(){
+           _ref = null;
+           _cdId = null;
+           $.unblockUI();
+       });
     });
 });

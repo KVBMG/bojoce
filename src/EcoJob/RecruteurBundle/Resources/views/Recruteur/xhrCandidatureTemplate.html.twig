@@ -2,7 +2,10 @@
     <li href="#" class="list-group-item list-group-item-danger candidature-item"><b>Aucun résultats!</b></li>
 {% endif %}
 {% for candidature in candidatures %}
-    <a class="list-group-item candidature-item" data-candidature-item-id="{{candidature.id}}">{{ candidature.candidat_username }} a postulé le :<b>{{ candidature[0].date_candidature |date }}</b></a>
+    <a class="list-group-item candidature-item" data-candidature-item-id="{{candidature.id}}">
+        <button type="button" class="close" data-toggle="modal" data-target="#modalDelete" data-candidature-id="{{ candidature.id }}">
+            <span aria-hidden="true">&times;</span>
+        </button>{{ candidature.candidat_username }} a postulé le :<b>{{ candidature[0].date_candidature |date }}</b></a>
 {% endfor %}
 <script>
     $(function() {

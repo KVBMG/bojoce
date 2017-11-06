@@ -2,8 +2,10 @@
 
 namespace EcoJob\RecruteurBundle\Controller;
 
+use EcoJob\CandidatBundle\Entity\Candidature;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use EcoJob\RecruteurBundle\Entity\Offre;
 use EcoJob\RecruteurBundle\Form\OffreType;
@@ -215,5 +217,12 @@ class RecruteurController extends Controller {
         $response = new Response(json_encode($html));
         $response->headers->set('Content-Type', 'application/json');
         return $response;        
+    }
+
+    public function deleteCandidatureAction(Candidature $candidature, Request $request) {
+        $em = $this->getDoctrine()->getEntityManager();
+        $em->remove($candidature);
+        $em->flush();
+        return new JsonResponse(['message' => 'deleted']);
     }
 }

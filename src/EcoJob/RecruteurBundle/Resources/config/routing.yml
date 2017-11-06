@@ -32,38 +32,37 @@ eco_job_recruteur_offre_search:
     methods:  POST
     options: 
         expose:  true    
-
-
 eco_job_recruteur_candidatures_list:
     path:     /candidatures
     defaults: { _controller: "EcoJobRecruteurBundle:Recruteur:candidatureListe" }
     methods:  [GET,POST]
-
 eco_job_recruteur_candidatures_offre_list:
     path:     /{id}/recruteur_offres/p={offset}
     defaults: { _controller: "EcoJobRecruteurBundle:Recruteur:recruteurOffreList" }
     methods:  [GET,POST]
     options:
         expose:  true
-
 eco_job_recruteur_offre_candidatures_template:
     path:     /offres/{id}/candidatures
     defaults: { _controller: "EcoJobRecruteurBundle:Recruteur:candidatureTemplate" }
     methods:  [GET]
     options:
         expose:  true
-
-# liste des candidatures pour un offre
 eco_job_recruteur_offre_candidatures:
     path:     /offres/{id}/candidatures/p={offset}
     defaults: { _controller: "EcoJobRecruteurBundle:Recruteur:offreCandidatures" }
     methods:  [GET,POST]
     options:
         expose:  true
-
 eco_job_recruteur_candidature_detail:
     path:     /candidatures/{id}
     defaults:  { _controller: "EcoJobRecruteurBundle:Recruteur:candidatureDetail" }
+    methods:  [GET,POST]
+    options:
+        expose:  true
+eco_job_recruteur_candidature_delete:
+    path:     /candidatures/{id}/delete
+    defaults:  { _controller: "EcoJobRecruteurBundle:Recruteur:deleteCandidature" }
     methods:  [GET,POST]
     options:
         expose:  true
