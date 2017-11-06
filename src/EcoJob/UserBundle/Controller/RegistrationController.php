@@ -20,10 +20,9 @@ use EcoJob\UserBundle\UserEvents as MyUserEvents;
 use EcoJob\UserBundle\Form\Type\RegistrationRecruteurFormType;
 use FOS\UserBundle\FOSUserEvents;
 
-class RegistrationController extends FOSRegistrationController
-{
-    public function registerAction(Request $request)
-    {
+class RegistrationController extends FOSRegistrationController {
+
+    public function registerAction(Request $request) {
         /** @var $formFactory FactoryInterface */
         $formFactory = $this->get('fos_user.registration.form.factory');
         /** @var $userManager UserManagerInterface */
@@ -50,11 +49,11 @@ class RegistrationController extends FOSRegistrationController
             if ($form->isValid()) {
                 $event = new FormEvent($form, $request);
                 $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
-                if($user->getType()->getId() == 1)
+                if ($user->getType()->getId() == 1)
                     $user->addRole('ROLE_CANDIDAT');
                 else
-                   $user->addRole('ROLE_RECRUTEUR');
-                
+                    $user->addRole('ROLE_RECRUTEUR');
+
                 $userManager->updateUser($user);
 
                 if (null === $response = $event->getResponse()) {
@@ -76,11 +75,11 @@ class RegistrationController extends FOSRegistrationController
         }
 
         return $this->render('@FOSUser/Registration/register.html.twig', array(
-            'form' => $form->createView(),
+                    'form' => $form->createView(),
         ));
-    }    
-    public function resendConfirmAction(Request $request)
-    {
+    }
+
+    public function resendConfirmAction(Request $request) {
         /** @var $formFactory \FOS\UserBundle\Form\Factory\FactoryInterface */
         $formFactory = $this->container->get('user.resend_confirm.form.factory');
         /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
@@ -94,7 +93,7 @@ class RegistrationController extends FOSRegistrationController
         $form->setData($user);
 
         $error = "";
-        
+
         if ('POST' === $request->getMethod()) {
             $form->bind($request);
 
@@ -105,9 +104,9 @@ class RegistrationController extends FOSRegistrationController
                 if (null === $user) {
                     $error = sprintf('L\'utilisateur avec l\'adresse e-mail ou nom d\'utilisateur "%s" n\'existe pas', $email);
                     return $this->render('EcoJobUserBundle:Registration:resend_confirm.html.twig', array(
-                        'form' => $form->createView(),
-                        'error' => $error
-                    ));                      
+                                'form' => $form->createView(),
+                                'error' => $error
+                    ));
                 }
 
                 $event = new GetResponseUserEvent($user, $request);
@@ -124,23 +123,28 @@ class RegistrationController extends FOSRegistrationController
         }
 
         return $this->render('EcoJobUserBundle:Registration:resend_confirm.html.twig', array(
-            'form' => $form->createView(),
-            'error' => $error
-        ));        
+                    'form' => $form->createView(),
+                    'error' => $error
+        ));
     }
+
     /**
      * Overwrite default FOS action with difference that we redirect to login page
      * in case the token is expired/invalid.
      *
      * => if users click the confirm link twice...
      */
-    public function confirmAction(Request $request, $token)
-    {
+    public function confirmAction(Request $request, $token) {
         try {
             return parent::confirmAction($request, $token);
         } catch (NotFoundHttpException $e) {
-            return $this->redirectToRoute('fos_user_security_login');
-        }
-    }    
-}
+            if ($this->get('security.authorization_checker')->isGranted('IS_AUTHENTICATED_FULLY')) {
+                return $this->redirectToRoute('eco_job_main_index');
+            } else {
 
+                return $this->redirectToRoute('fos_user_security_login');
+            }
+        }
+    }
+
+}
