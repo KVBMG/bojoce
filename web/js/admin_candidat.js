@@ -60,7 +60,7 @@ $(function () {
                     $('#profilModal').modal('show');
                 },
                 error: function () {
-                    alert("La requête n'a pas abouti. Rappelez vous qu'un recruteur n'a pas de CV");
+                    alert("La requête n'a pas abouti. Le candidat n'a pas encore ajouté son CV. Rappelez vous aussi qu'un recruteur n'a pas de CV");
                 }
             });
         }
