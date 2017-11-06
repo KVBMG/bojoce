@@ -131,7 +131,8 @@ $(function () {
                 $('#globModal').modal('hide');
                 var b = table.ajax.reload();
                 var a = table.ajax.json();
-
+                var b = table2.ajax.reload();
+                var a = table2.ajax.json();
             },
             error: function () {
                 alert('La requête n\'a pas abouti');
